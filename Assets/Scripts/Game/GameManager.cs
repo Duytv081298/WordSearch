@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour
 
 
 
+    // [Header("Components")]
+    // [SerializeField] private CharacterGrid characterGrid = null;
+    // [SerializeField] private WordList wordList = null;
+    // [SerializeField] private GameObject loadingIndicator = null;
 
     // public Dictionary<string, Board> BoardsInProgress { get; private set; }
     // public Dictionary<string, int> LastCompletedLevels { get; private set; }
@@ -30,7 +34,7 @@ public class GameManager : MonoBehaviour
     public int Keys { get; set; }
     void Awake()
     {
-        
+
         Debug.Log(JsonUtility.ToJson(categoryInfos[0]));
     }
 
