@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class ProgressBar : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    [SerializeField] private RectTransform barFillArea = null;
+    [SerializeField] private RectTransform bar = null;
+    [SerializeField] private float minSize = 60;
+
+    public void SetProgress(float progress)
+		{
+			// if (gameObject.activeInHierarchy)
+			// {
+			// 	StartCoroutine(SetNextFrame(progress));
+			// }
+			// else
+			// {
+			// 	setOnUpdate = true;
+			// 	setProgress = progress;
+			// }
+		}
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

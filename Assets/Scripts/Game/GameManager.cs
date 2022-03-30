@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonComponent<GameManager>
 {
 
     [Header("Data")]
@@ -18,9 +18,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int coinCostWordHint = 0;
     [SerializeField] private int coinCostLetterHint = 0;
 
+    [Header("Components")]
+    [SerializeField] private ScreenManager screenManager = null;
 
-
-    // [Header("Components")]
     // [SerializeField] private CharacterGrid characterGrid = null;
     // [SerializeField] private WordList wordList = null;
     // [SerializeField] private GameObject loadingIndicator = null;
@@ -35,12 +35,12 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
 
-        Debug.Log(JsonUtility.ToJson(categoryInfos[0]));
+        // Debug.Log(JsonUtility.ToJson(categoryInfos[0]));
     }
 
     void Start()
     {
-
+        screenManager.Initialize(categoryInfos);
     }
 
     // Update is called once per frame
@@ -48,4 +48,5 @@ public class GameManager : MonoBehaviour
     {
 
     }
+
 }

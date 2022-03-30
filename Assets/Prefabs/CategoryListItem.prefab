@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5866662455309582625}
   - component: {fileID: 5864220049573338527}
   - component: {fileID: 6048220128583529713}
-  - component: {fileID: 6044483082218733217}
   - component: {fileID: 4866961243486054841}
+  - component: {fileID: 4942156133460821727}
   m_Layer: 5
   m_Name: CategoryListItem
   m_TagString: Untagged
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5566038, g: 0.3744103, b: 0.27042544, a: 1}
+  m_Color: {r: 0.16078429, g: 0.5434489, b: 0.8, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -82,7 +82,72 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6044483082218733217
+--- !u!114 &4866961243486054841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5940535140797686965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9c63f2cded28c498dea305cd3b2834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 6048237046417918615}
+  iconImage: {fileID: 6048327498538651309}
+  backgroundImage: {fileID: 6048220128583529713}
+  levelProgressBar: {fileID: 7455888047345184491}
+  levelProgressText: {fileID: 6048152196234058423}
+  progressBarContainer: {fileID: 5941118371091913045}
+  lockedContainer: {fileID: 5940649874144601329}
+  coinsUnlockContainer: {fileID: 5941386091329752579}
+  keysUnlockContainer: {fileID: 5940844620527700289}
+  iapUnlockContainer: {fileID: 5941150769714387571}
+  coinsUnlockAmountText: {fileID: 6044263206580376631}
+  keysUnlockAmountText: {fileID: 6048240299669181025}
+  iapUnlockPriceText: {fileID: 6044041755108901053}
+  categoryU:
+    displayName: BIRDS
+    saveId: birds
+    icon: {fileID: 21300000, guid: d40eb265867bace4a86af6e7ea57f7c0, type: 3}
+    categoryColor: {r: 0.16078429, g: 0.5434489, b: 0.8, a: 1}
+    lockType: 0
+    unlockAmount: 0
+    iapProductId: 
+    wordFile: {fileID: 4900000, guid: c4b938be0c193d4439aed930d1c60dfe, type: 3}
+    levelFiles:
+    - {fileID: 4900000, guid: d1fb27047a75a0646939aa72f05000c9, type: 3}
+    - {fileID: 4900000, guid: 0640169f78ff4424fb0c8303f145bc55, type: 3}
+    - {fileID: 4900000, guid: 4784f28b13a7d744792d83e5479bcd7c, type: 3}
+    - {fileID: 4900000, guid: 0535de9dd26d98148a3060be8fdf2fe3, type: 3}
+    - {fileID: 4900000, guid: c10c22a61b55f224db8324dbef16e326, type: 3}
+    - {fileID: 4900000, guid: a08e6d5f1b59a4647881bce049d6c23f, type: 3}
+    - {fileID: 4900000, guid: 005e900c83dc6484d8b1f69a090fc6a3, type: 3}
+    - {fileID: 4900000, guid: e174e82c6ddefcb4cbe16dab90d885c8, type: 3}
+    - {fileID: 4900000, guid: e07c377e5c625e1479417db090a0c449, type: 3}
+    - {fileID: 4900000, guid: 761e70838d04b0442b0b468ae8940c66, type: 3}
+    - {fileID: 4900000, guid: 6024c51d00cd2fc41a31b85e5925cf85, type: 3}
+    - {fileID: 4900000, guid: f8d3a27dac1c7c84598450cf443f2743, type: 3}
+    - {fileID: 4900000, guid: bf2c84a40f502f04e85581bc9024e51c, type: 3}
+    - {fileID: 4900000, guid: 4b5cc33aad6e667438adcef89f483c94, type: 3}
+    - {fileID: 4900000, guid: 12f1dcb742814064e9069f5117f62e38, type: 3}
+    - {fileID: 4900000, guid: 4b1e5bee9e508ed478b011a676f7c714, type: 3}
+    - {fileID: 4900000, guid: 26e5eff4c99f18547bbd0a17664d3e85, type: 3}
+    - {fileID: 4900000, guid: 7c44a23f5c540ab478c769e6159db648, type: 3}
+    - {fileID: 4900000, guid: 4e7a91188bd91994386233176e72717a, type: 3}
+    - {fileID: 4900000, guid: 35cc3232babf95341847852155f58ebc, type: 3}
+    - {fileID: 4900000, guid: 278127ab0b236364da5cc302c7791170, type: 3}
+    - {fileID: 4900000, guid: 22cf5829b1c9c5f498f0627d1650a5ab, type: 3}
+    - {fileID: 4900000, guid: 907fb8880bdcddc44bc2baf80e1ba967, type: 3}
+    - {fileID: 4900000, guid: f847435f0a611934ca2d5d2842fc4aee, type: 3}
+    - {fileID: 4900000, guid: f066b5e3e90ad7148bbc0e7e7c493832, type: 3}
+    - {fileID: 4900000, guid: dd1a156c9f3781d44aba3389eca65cfc, type: 3}
+    - {fileID: 4900000, guid: 4050295e4d9eae64d8faeb4c9579f512, type: 3}
+    - {fileID: 4900000, guid: bcd57490158a46e439a424f00188e57c, type: 3}
+    - {fileID: 4900000, guid: eff3681929c304349825762d5fa84a13, type: 3}
+    - {fileID: 4900000, guid: c6ff8f26795f21741ad189d2bbfc18e9, type: 3}
+--- !u!114 &4942156133460821727
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,38 +184,25 @@ MonoBehaviour:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
-    m_SelectedTrigger: Highlighted
+    m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 6048220128583529713}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &4866961243486054841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5940535140797686965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea9c63f2cded28c498dea305cd3b2834, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameText: {fileID: 6048237046417918615}
-  iconImage: {fileID: 6048327498538651309}
-  backgroundImage: {fileID: 6048220128583529713}
-  levelProgressBar: {fileID: 7455888047345184491}
-  levelProgressText: {fileID: 6048152196234058423}
-  progressBarContainer: {fileID: 5941118371091913045}
-  lockedContainer: {fileID: 5940649874144601329}
-  coinsUnlockContainer: {fileID: 5941386091329752579}
-  keysUnlockContainer: {fileID: 5940844620527700289}
-  iapUnlockContainer: {fileID: 5941150769714387571}
-  coinsUnlockAmountText: {fileID: 6044263206580376631}
-  keysUnlockAmountText: {fileID: 6048240299669181025}
-  iapUnlockPriceText: {fileID: 6044041755108901053}
+      m_Calls:
+      - m_Target: {fileID: 4866961243486054841}
+        m_TargetAssemblyTypeName: CategoryListItem, Assembly-CSharp
+        m_MethodName: Onclick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5940553127071150459
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5866703709587687599
 RectTransform:
   m_ObjectHideFlags: 0
@@ -858,7 +910,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5867028777573802859
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1103,10 +1155,10 @@ RectTransform:
   m_Father: {fileID: 5866433957095807777}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 249.5, y: -29}
-  m_SizeDelta: {x: 65, y: 58}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5863867506206918967
 CanvasRenderer:
@@ -1149,7 +1201,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: x 1
+  m_Text: x 2
 --- !u!114 &6044485012079050261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1407,10 +1459,10 @@ RectTransform:
   m_Father: {fileID: 5866433957095807777}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 76, y: -29}
-  m_SizeDelta: {x: 152, y: 58}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5863812307915340139
 CanvasRenderer:
@@ -1675,7 +1727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5866711411287584621
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1748,6 +1800,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd8683c2145909458096e39c139765c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  barFillArea: {fileID: 0}
+  bar: {fileID: 0}
+  minSize: 60
 --- !u!1 &5941127051311987319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1781,10 +1836,10 @@ RectTransform:
   m_Father: {fileID: 5866433957095807777}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 184.5, y: -22.5}
-  m_SizeDelta: {x: 45, y: 45}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6043916083477511263
 MonoBehaviour:
@@ -1844,7 +1899,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 119, y: 58}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5864381214951422389
 CanvasRenderer:
@@ -1887,7 +1942,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0/150
+  m_Text: 1 / 30
 --- !u!114 &6043879859844650433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2035,7 +2090,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ANIMALS
+  m_Text: BIRDS
 --- !u!114 &6044249949985722331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2212,7 +2267,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1135c21aa689e1041bfd7e3fa8b7e2ab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d40eb265867bace4a86af6e7ea57f7c0, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2276,7 +2331,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 282, y: 58}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6048224199824141895
 MonoBehaviour:
