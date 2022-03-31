@@ -32,80 +32,63 @@ public class CategoryListItem : MonoBehaviour
         return this.nameText.text;
     }
 
-    public void setText(string text) {
-		this.nameText.text = text;
-	}
-
-public GameObject SpawbCategoryItem(CategoryInfo category, Transform parent)
-{
-    Debug.Log(category.displayName);
-    this.categoryU = category;
-    GameObject categoryT = Instantiate(gameObject, Vector3.zero, Quaternion.identity, parent);
-    nameText.text = category.displayName;
-    iconImage.sprite = category.icon;
-    backgroundImage.color = category.categoryColor;
-    // Debug.Log(nameText.text);
-    SetProgress(category);
-    SetLocked(category);
-    return categoryT;
-}
-public void Test()
-{
-    Debug.Log(gameObject.name);
-}
-void SetProgress(CategoryInfo category)
-{
-    int totalLevels = category.levelFiles.Count;
-    int numLevelsCompleted = 1;
-
-    // levelProgressBar.SetProgress((float)numLevelsCompleted / (float)totalLevels);
-
-    levelProgressText.text = string.Format("{0} / {1}", numLevelsCompleted, totalLevels);
-}
-void SetLocked(CategoryInfo category)
-{
-
-    bool isCategoryLocked = category.lockType == 0 ? false : true;
-
-
-    progressBarContainer.SetActive(!isCategoryLocked);
-    lockedContainer.SetActive(isCategoryLocked);
-
-    // Debug.Log(category.unlockAmount);
-    // Debug.Log(JsonUtility.ToJson(category.lockType));
-    // Debug.Log(JsonUtility.ToJson(CategoryInfo.LockType.Coins));
-
-    switch (category.lockType)
+    public void setText(string text)
     {
-        case CategoryInfo.LockType.Coins:
-            coinsUnlockContainer.SetActive(true);
-            coinsUnlockAmountText.text = "x " + category.unlockAmount;
-            break;
-        case CategoryInfo.LockType.Keys:
-            keysUnlockContainer.SetActive(true);
-            keysUnlockAmountText.text = "x " + category.unlockAmount;
-            break;
-        case CategoryInfo.LockType.IAP:
-            // SetIAPPrice(category.iapProductId);
-            break;
+        this.nameText.text = text;
     }
-}
 
-public void Onclick()
-{
-    // Debug.Log(JsonUtility.ToJson(categoryU));
-    // ScreenManager.Instance.ChangeGameScreen();
-    Debug.Log(nameText.text);
-}
+    public void Initialize(CategoryInfo category)
+    {
+        this.categoryU = category;
+        nameText.text = category.displayName;
+        iconImage.sprite = category.icon;
+        backgroundImage.color = category.categoryColor;
+        SetProgress(category);
+        SetLocked(category);
+    }
+    void SetProgress(CategoryInfo category)
+    {
+        int totalLevels = category.levelFiles.Count;
+        int numLevelsCompleted = 1;
 
-void Start()
-{
+        // levelProgressBar.SetProgress((float)numLevelsCompleted / (float)totalLevels);
+        levelProgressText.text = string.Format("{0} / {1}", numLevelsCompleted, totalLevels);
+    }
+    void SetLocked(CategoryInfo category)
+    {
 
-}
+        bool isCategoryLocked = category.lockType == 0 ? false : true;
 
-// Update is called once per frame
-void Update()
-{
 
-}
+        progressBarContainer.SetActive(!isCategoryLocked);
+        lockedContainer.SetActive(isCategoryLocked);
+
+        // Debug.Log(category.unlockAmount);
+        // Debug.Log(JsonUtility.ToJson(category.lockType));
+        // Debug.Log(JsonUtility.ToJson(CategoryInfo.LockType.Coins));
+
+        switch (category.lockType)
+        {
+            case CategoryInfo.LockType.Coins:
+                coinsUnlockContainer.SetActive(true);
+                coinsUnlockAmountText.text = "x " + category.unlockAmount;
+                break;
+            case CategoryInfo.LockType.Keys:
+                keysUnlockContainer.SetActive(true);
+                keysUnlockAmountText.text = "x " + category.unlockAmount;
+                break;
+            case CategoryInfo.LockType.IAP:
+                // SetIAPPrice(category.iapProductId);
+                break;
+        }
+    }
+
+    public void Onclick()
+    {
+        Debug.Log(JsonUtility.ToJson(categoryU));
+        GameManager.Instance.SetCategory(categoryU);
+        PopupContainer.Instance.ShowCategorySelectedPopup();
+        // ScreenManager.Instance.ChangeGameScreen();
+        Debug.Log(GameManager.Instance.GetCategory());
+    }
 }

@@ -19,26 +19,25 @@ public class MainScreen : MonoBehaviour
     public void Initialize(List<CategoryInfo> categoryInfos)
     {
         this.categoryInfos = categoryInfos;
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < categoryInfos.Count; i++)
         {
             var category = categoryInfos[i];
-            Debug.Log(JsonUtility.ToJson(category));
-            // categoryListItemPrefab.SpawbCategoryItem(category, categoryListContainer);
-
             GameObject _categoryItem = Instantiate(categoryItemPrefab, Vector3.zero, Quaternion.identity, categoryListContainer);
             CategoryListItem _categoryScript = _categoryItem.GetComponent<CategoryListItem>();
-            _categoryScript.setText(category.displayName);
-            Debug.Log(_categoryScript.getText());
-            // Debug.Log(_categoryScript);
+            _categoryScript.Initialize(category);
         }
     }
     public GameObject GetGameObject()
     {
         return gameObject;
     }
+    public Transform GetTransform()
+    {
+        return transform;
+    }
 
     void Start()
-    { }
+    {}
 
     // Update is called once per frame
     void Update()

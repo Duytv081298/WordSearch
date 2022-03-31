@@ -21,6 +21,18 @@ public class GameManager : SingletonComponent<GameManager>
     [Header("Components")]
     [SerializeField] private ScreenManager screenManager = null;
 
+    [SerializeField] private CategoryInfo category = null;
+
+    public CategoryInfo GetCategory()
+    {
+        return this.category;
+    }
+
+    public void SetCategory(CategoryInfo category)
+    {
+        this.category = category;
+    }
+
     // [SerializeField] private CharacterGrid characterGrid = null;
     // [SerializeField] private WordList wordList = null;
     // [SerializeField] private GameObject loadingIndicator = null;
