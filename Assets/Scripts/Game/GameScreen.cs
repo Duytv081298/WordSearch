@@ -9,12 +9,16 @@ public class GameScreen : MonoBehaviour
     [SerializeField] private Text wordHintCostText = null;
     [SerializeField] private Text letterHintCostText = null;
 
+    [SerializeField] private string id = "game";
+
     public GameObject GetGameObject(){
         return gameObject;
     }
 
     void Start()
     {
+       Debug.Log("start game screen"); 
+       //  Debug.Log(GameManager.Instance.GetActiveLevel());
         // gameObject.SetActive(true);
     }
 

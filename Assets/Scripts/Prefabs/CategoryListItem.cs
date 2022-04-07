@@ -50,7 +50,6 @@ public class CategoryListItem : MonoBehaviour
     {
         int totalLevels = category.levelFiles.Count;
         int numLevelsCompleted = 1;
-
         // levelProgressBar.SetProgress((float)numLevelsCompleted / (float)totalLevels);
         levelProgressText.text = string.Format("{0} / {1}", numLevelsCompleted, totalLevels);
     }
@@ -58,7 +57,6 @@ public class CategoryListItem : MonoBehaviour
     {
 
         bool isCategoryLocked = category.lockType == 0 ? false : true;
-
 
         progressBarContainer.SetActive(!isCategoryLocked);
         lockedContainer.SetActive(isCategoryLocked);
@@ -86,9 +84,9 @@ public class CategoryListItem : MonoBehaviour
     public void Onclick()
     {
         Debug.Log(JsonUtility.ToJson(categoryU));
-        GameManager.Instance.SetCategory(categoryU);
+        GameManager.Instance.SetActiveCategory(categoryU);
         PopupContainer.Instance.ShowCategorySelectedPopup();
         // ScreenManager.Instance.ChangeGameScreen();
-        Debug.Log(GameManager.Instance.GetCategory());
+        Debug.Log(GameManager.Instance.GetActiveCategory());
     }
 }

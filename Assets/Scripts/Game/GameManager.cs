@@ -21,16 +21,49 @@ public class GameManager : SingletonComponent<GameManager>
     [Header("Components")]
     [SerializeField] private ScreenManager screenManager = null;
 
-    [SerializeField] private CategoryInfo category = null;
+    [SerializeField] private CategoryInfo activeCategoryInfo = null;
+    [SerializeField] private TextAsset activeLevel = null;
 
-    public CategoryInfo GetCategory()
+  public List<CategoryInfo> GetCategoryInfos()
     {
-        return this.category;
+        return this.categoryInfos;
     }
 
-    public void SetCategory(CategoryInfo category)
+    public void SetCategoryInfos(List<CategoryInfo> categoryInfos)
     {
-        this.category = category;
+        this.categoryInfos = categoryInfos;
+    }
+    public TextAsset GetActiveLevel()
+    {
+        return this.activeLevel;
+    }
+
+    public void SetActiveLevel(TextAsset activeLevel)
+    {
+        this.activeLevel = activeLevel;
+    }
+
+    public Dictionary<string, int> lastCompletedLevels = null;
+
+    public Dictionary<string, int> GetLastCompletedLevels()
+    {
+        return this.lastCompletedLevels;
+    }
+
+    public void SetLastCompletedLevels(Dictionary<string, int> lastCompletedLevels)
+    {
+        this.lastCompletedLevels = lastCompletedLevels;
+    }
+
+
+    public CategoryInfo GetActiveCategory()
+    {
+        return this.activeCategoryInfo;
+    }
+
+    public void SetActiveCategory(CategoryInfo category)
+    {
+        this.activeCategoryInfo = category;
     }
 
     // [SerializeField] private CharacterGrid characterGrid = null;
@@ -47,12 +80,15 @@ public class GameManager : SingletonComponent<GameManager>
     void Awake()
     {
 
+        lastCompletedLevels = new Dictionary<string, int>();
         // Debug.Log(JsonUtility.ToJson(categoryInfos[0]));
     }
 
     void Start()
     {
-        screenManager.Initialize(categoryInfos);
+        // screenManager.Initialize(categoryInfos);
+        SaveableManager.Instance.LoadSaveData(categoryInfos);
+        Debug.Log(lastCompletedLevels["birds"]);
     }
 
     // Update is called once per frame

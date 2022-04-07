@@ -6,12 +6,14 @@ using DG.Tweening;
 public class ScreenManager : SingletonComponent<ScreenManager>
 {
     [SerializeField]
-    private MainScreen mainScreen = null;
+    private GameObject mainScreen = null;
     [SerializeField]
-    private GameScreen gameScreen = null;
+    private GameObject gameScreen = null;
+    [SerializeField]
+    private GameObject levelScreen = null;
     private List<string> backStack;
     // The screen that is currently being shown
-    private Screen currentScreen;
+    private GameObject currentScreen;
     // Start is called before the first frame update
 
 
@@ -19,15 +21,19 @@ public class ScreenManager : SingletonComponent<ScreenManager>
 
     public void Initialize(List<CategoryInfo> categoryInfos)
     {
+
+        // Debug.Log();
         this.categoryInfos = categoryInfos;
-        mainScreen.Initialize(categoryInfos);
+        // MainScreen _mainScreenScript = mainScreen.GetComponent<MainScreen>();
+        // Debug.Log(JsonUtility.ToJson(GameManager.Instance.GetCategoryInfos()));
+        // _mainScreenScript.Initialize(categoryInfos);
     }
 
 
     public void ChangeGameScreen()
     {
-        gameScreen.GetGameObject().SetActive(true);
-        mainScreen.GetGameObject().SetActive(false);
+        // gameScreen.SetActiveScreen(true);
+        // mainScreen.SetActiveScreen(false);
         // var _renderer = mainScreen.GetRenderer();
         // // var _color = _renderer.material.color;
         // Debug.Log(_renderer);
@@ -38,14 +44,61 @@ public class ScreenManager : SingletonComponent<ScreenManager>
     }
     public void ChangeMainScreen()
     {
-        mainScreen.GetGameObject().SetActive(true);
-        gameScreen.GetGameObject().SetActive(false);
+        // mainScreen.SetActiveScreen(true);
+        // gameScreen.SetActiveScreen(false);
     }
+
+    public void OpenMainScreen()
+    {
+
+    }
+    public void OpenGameScreen(TextAsset levelFile)
+    {
+        // levelScreen.SetActiveScreen(false);
+        // gameScreen.SetActiveScreen(true);
+    }
+    public void OpenlevelScreen()
+    {
+
+        // levelScreen.SetActiveScreen(true);
+        // mainScreen.SetActiveScreen(false);
+    }
+    public void ShowScreen(string idScreen)
+    {
+        HideCurrentScreen();
+        GameObject screenActive = GetScreenById(idScreen);
+        screenActive.SetActive(true);
+        currentScreen = screenActive;
+        backStack.Add(idScreen);
+    }
+
+    void HideCurrentScreen()
+    {
+        if (currentScreen) currentScreen.SetActive(false);
+    }
+    GameObject GetScreenById(string id)
+    {
+        GameObject result = null;
+        switch (id)
+        {
+            case "main":
+                Debug.Log(111111);
+                result = mainScreen;
+                break;
+            case "levels":
+                result = levelScreen;
+                break;
+            case "game":
+                result = gameScreen;
+                break;
+        }
+        return result;
+    }
+
     void Start()
     {
-        // screens[0].GetGameObject();
-        // screens[0].SetActive(true);
-        // screens[1].SetActive(false);
+        backStack = new List<string>();
+        ShowScreen("main");
     }
     // Update is called once per frame
     void Update()

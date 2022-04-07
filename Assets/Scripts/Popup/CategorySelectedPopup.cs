@@ -6,12 +6,6 @@ using UnityEngine.UI;
 public class CategorySelectedPopup : MonoBehaviour
 {
 
-    // [SerializeField] private Button btn_Close_X = null;
-    // [SerializeField] private Button btn_Close = null;
-    // [SerializeField] private Button btn_Casual_Play = null;
-    // [SerializeField] private Button btn_Casual_Continue = null;
-    // [SerializeField] private Button btn_Progress_Play_Next = null;
-    // [SerializeField] private Button btn_Progress_Level = null;
 
     [SerializeField] private CanvasGroup selectModeContainer = null;
     [SerializeField] private CanvasGroup SelectDifficultyContainer = null;
@@ -70,7 +64,8 @@ public class CategorySelectedPopup : MonoBehaviour
     }
     public void ShowProgressLevel()
     {
-
+        ClosePopupCategorySelected();
+        OpenModeContainer();
     }
 
     public void OnDifficultySelected(int difficultyIndex)
