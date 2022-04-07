@@ -4293,6 +4293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectModeContainer: {fileID: 1309256791}
   SelectDifficultyContainer: {fileID: 736015621}
+  activePlayCasual: 0
 --- !u!1 &281566207
 GameObject:
   m_ObjectHideFlags: 0
@@ -4842,7 +4843,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -25.000122}
-  m_SizeDelta: {x: 193.29546, y: 61.36364}
+  m_SizeDelta: {x: 197.27931, y: 63.907383}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &313801561
 MonoBehaviour:
@@ -12333,7 +12334,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 277605926}
         m_TargetAssemblyTypeName: CategorySelectedPopup, Assembly-CSharp
-        m_MethodName: ShowProgressPlay
+        m_MethodName: PlayNextLevelProgress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13517,7 +13518,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -0.00006103577, y: -159.99994}
-  m_SizeDelta: {x: 420.3409, y: 58.295456}
+  m_SizeDelta: {x: 405.67294, y: 55.571636}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &822022930
 MonoBehaviour:
@@ -13733,7 +13734,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000015258789, y: 77.78191}
-  m_SizeDelta: {x: 366, y: 98.18182}
+  m_SizeDelta: {x: 366, y: 97.25037}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &834014358
 MonoBehaviour:
@@ -18015,7 +18016,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -115}
-  m_SizeDelta: {x: -10, y: 64.43182}
+  m_SizeDelta: {x: -10, y: 63.907383}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1170700797
 MonoBehaviour:
@@ -20595,7 +20596,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -30.280151}
-  m_SizeDelta: {x: 615.6818, y: 90}
+  m_SizeDelta: {x: 606.2735, y: 90}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1339213965
 MonoBehaviour:
@@ -23581,7 +23582,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -25}
-  m_SizeDelta: {x: 266.93182, y: 61.36364}
+  m_SizeDelta: {x: 263.96527, y: 63.907383}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1637780540
 MonoBehaviour:
@@ -25616,7 +25617,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -0.000061035156, y: -160}
-  m_SizeDelta: {x: 355.9091, y: 58.295456}
+  m_SizeDelta: {x: 338.98697, y: 55.571636}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1812564522
 MonoBehaviour:
@@ -29148,8 +29149,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 330.3409, y: -7}
-  m_SizeDelta: {x: 570.6818, y: 76}
+  m_AnchoredPosition: {x: 325.63675, y: -7}
+  m_SizeDelta: {x: 561.2735, y: 76}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2102675522
 MonoBehaviour:

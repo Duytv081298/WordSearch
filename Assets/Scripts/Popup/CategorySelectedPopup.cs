@@ -9,6 +9,8 @@ public class CategorySelectedPopup : MonoBehaviour
 
     [SerializeField] private CanvasGroup selectModeContainer = null;
     [SerializeField] private CanvasGroup SelectDifficultyContainer = null;
+
+    [SerializeField] private bool activePlayCasual = false;
     void Start()
     { }
     void Update()
@@ -52,15 +54,20 @@ public class CategorySelectedPopup : MonoBehaviour
     }
     public void PlayWithCategory()
     {
+        Debug.Log("PlayWithCategory");
         OpenDifficultyContainer();
     }
     public void ContinueWithCategory()
     {
-        OpenDifficultyContainer();
+        Debug.Log("ContinueWithCategory");
+        // OpenDifficultyContainer();
     }
-    public void ShowProgressPlay()
+    public void PlayNextLevelProgress()
     {
-
+        Debug.Log("PlayNextLevelProgress");
+        CategoryInfo activeCategory = GameManager.Instance.GetActiveCategory();
+        int activeLevel = GameManager.Instance.GetLastCompletedLevels()[activeCategory.saveId];
+        TextAsset levelFile = activeCategory.levelFiles[activeLevel];
     }
     public void ShowProgressLevel()
     {
