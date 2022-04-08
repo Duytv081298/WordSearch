@@ -19,7 +19,7 @@ public class LevelScreen : MonoBehaviour
             LevelListItem _levelScript = _levelItem.GetComponent<LevelListItem>();
             _levelScript.Initialize(levelFile, i);
         }
-        Debug.Log(JsonUtility.ToJson(GameManager.Instance.GetActiveCategory()));
+        // Debug.Log(JsonUtility.ToJson(GameManager.Instance.GetActiveCategory()));
     }
 
     // Update is called once per frame

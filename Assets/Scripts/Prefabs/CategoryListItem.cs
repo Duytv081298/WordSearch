@@ -83,10 +83,10 @@ public class CategoryListItem : MonoBehaviour
 
     public void Onclick()
     {
-        Debug.Log(JsonUtility.ToJson(categoryU));
+        // Debug.Log(JsonUtility.ToJson(categoryU));
         GameManager.Instance.SetActiveCategory(categoryU);
         PopupContainer.Instance.ShowCategorySelectedPopup();
         // ScreenManager.Instance.ChangeGameScreen();
-        Debug.Log(GameManager.Instance.GetActiveCategory());
+        // Debug.Log(GameManager.Instance.GetActiveCategory());
     }
 }

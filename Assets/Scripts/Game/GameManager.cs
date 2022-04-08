@@ -22,7 +22,7 @@ public class GameManager : SingletonComponent<GameManager>
     [SerializeField] private ScreenManager screenManager = null;
 
     [SerializeField] private CategoryInfo activeCategoryInfo = null;
-    [SerializeField] private TextAsset activeLevel = null;
+    [SerializeField] private LevelInfo activeLevel = null;
 
   public List<CategoryInfo> GetCategoryInfos()
     {
@@ -33,12 +33,12 @@ public class GameManager : SingletonComponent<GameManager>
     {
         this.categoryInfos = categoryInfos;
     }
-    public TextAsset GetActiveLevel()
+    public LevelInfo GetActiveLevel()
     {
         return this.activeLevel;
     }
 
-    public void SetActiveLevel(TextAsset activeLevel)
+    public void SetActiveLevel(LevelInfo activeLevel)
     {
         this.activeLevel = activeLevel;
     }
@@ -88,7 +88,7 @@ public class GameManager : SingletonComponent<GameManager>
     {
         // screenManager.Initialize(categoryInfos);
         SaveableManager.Instance.LoadSaveData(categoryInfos);
-        Debug.Log(lastCompletedLevels["birds"]);
+        // Debug.Log(lastCompletedLevels["birds"]);
     }
 
     // Update is called once per frame

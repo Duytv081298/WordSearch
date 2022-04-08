@@ -9,17 +9,27 @@ public class GameScreen : MonoBehaviour
     [SerializeField] private Text wordHintCostText = null;
     [SerializeField] private Text letterHintCostText = null;
 
+
+
+
+
+    [Header("Components")]
+    // [SerializeField] private CharacterGrid characterGrid = null;
+    [SerializeField] private WordListContainer wordList = null;
+
     [SerializeField] private string id = "game";
 
-    public GameObject GetGameObject(){
+    public GameObject GetGameObject()
+    {
         return gameObject;
     }
 
     void Start()
     {
-       Debug.Log("start game screen"); 
-       //  Debug.Log(GameManager.Instance.GetActiveLevel());
+        Debug.Log("start game screen");
+        //  Debug.Log(GameManager.Instance.GetActiveLevel());
         // gameObject.SetActive(true);
+        Debug.Log(GameManager.Instance.GetActiveLevel());
     }
 
     // Update is called once per frame

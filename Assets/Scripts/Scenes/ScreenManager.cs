@@ -82,7 +82,6 @@ public class ScreenManager : SingletonComponent<ScreenManager>
         switch (id)
         {
             case "main":
-                Debug.Log(111111);
                 result = mainScreen;
                 break;
             case "levels":

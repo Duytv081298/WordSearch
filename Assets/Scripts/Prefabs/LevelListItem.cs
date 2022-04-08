@@ -21,6 +21,8 @@ public class LevelListItem : MonoBehaviour
     {
         this.levelFile = levelFile;
 
+        // this.levelFile = JsonUtility.FromJson<LevelInfo>(levelFile.ToString());
+
         HideAllIcons();
 
         levelText.text = "LEVEL " + (level + 1).ToString();
@@ -64,10 +66,15 @@ public class LevelListItem : MonoBehaviour
         lockedIcon.enabled = false;
         playIcon.enabled = false;
     }
-    public void onClickLevel(){
-        if(isEvent) {
+    public void onClickLevel()
+    {
+        if (isEvent)
+        {
             ScreenManager.Instance.ShowScreen("game");
-            GameManager.Instance.SetActiveLevel(this.levelFile);
+            // Debug.Log(this.levelFile);
+            LevelInfo file = new LevelInfo();
+            file.FromJson(this.levelFile);
+            GameManager.Instance.SetActiveLevel(file);
         }
     }
 }
