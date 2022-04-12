@@ -14,6 +14,8 @@ public class LevelListItem : MonoBehaviour
 
     private TextAsset levelFile = null;
 
+    private int levelIndex;
+
     private bool isEvent = true;
 
 
@@ -21,18 +23,20 @@ public class LevelListItem : MonoBehaviour
     {
         this.levelFile = levelFile;
 
+        this.levelIndex = level;
+
         // this.levelFile = JsonUtility.FromJson<LevelInfo>(levelFile.ToString());
 
         HideAllIcons();
 
-        levelText.text = "LEVEL " + (level + 1).ToString();
-        CategoryInfo activeCategory = GameManager.Instance.GetActiveCategory();
+        levelText.text = "LEVEL " + (this.levelIndex + 1).ToString();
+        CategoryInfo activeCategory = GameManager.Instance.ActiveCategoryInfo;
         int activeLevel = GameManager.Instance.GetLastCompletedLevels()[activeCategory.saveId];
 
         categoryIcon.sprite = activeCategory.icon;
 
-        if (level < activeLevel) SetCompleted();
-        else if (level == activeLevel) SetPlayable();
+        if (this.levelIndex < activeLevel) SetCompleted();
+        else if (this.levelIndex == activeLevel) SetPlayable();
         else
         {
             isEvent = false;
@@ -70,11 +74,8 @@ public class LevelListItem : MonoBehaviour
     {
         if (isEvent)
         {
-            ScreenManager.Instance.ShowScreen("game");
+            GameManager.Instance.StartLevel(GameManager.Instance.ActiveCategoryInfo, levelIndex);
             // Debug.Log(this.levelFile);
-            LevelInfo file = new LevelInfo();
-            file.FromJson(this.levelFile);
-            GameManager.Instance.SetActiveLevel(file);
         }
     }
 }

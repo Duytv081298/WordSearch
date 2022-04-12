@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SimpleJSON;
-public class LevelInfo
+public class Board
 {
     public class WordPlacement
     {
@@ -29,7 +29,9 @@ public class LevelInfo
     public List<string> words;
     public List<List<char>> boardCharacters;
     public List<WordPlacement> wordPlacements;
+    public HashSet<string> foundWords = new HashSet<string>();
 
+    public HashSet<char> letterHintsUsed = new HashSet<char>();
     public void FromJson(TextAsset levelFile)
     {
         string contents = levelFile.text;
@@ -66,6 +68,14 @@ public class LevelInfo
             wordPlacement.verticalDirection = wordPlacementJson["v"].AsInt;
 
             wordPlacements.Add(wordPlacement);
+        }
+        for (int i = 0; i < json["foundWords"].AsArray.Count; i++)
+        {
+            foundWords.Add(json["foundWords"].AsArray[i].Value);
+        }
+        for (int i = 0; i < json["letterHintsUsed"].AsArray.Count; i++)
+        {
+            letterHintsUsed.Add(json["letterHintsUsed"].AsArray[i].Value[0]);
         }
 
     }

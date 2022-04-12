@@ -21,12 +21,8 @@ public class ScreenManager : SingletonComponent<ScreenManager>
 
     public void Initialize(List<CategoryInfo> categoryInfos)
     {
-
-        // Debug.Log();
-        this.categoryInfos = categoryInfos;
-        // MainScreen _mainScreenScript = mainScreen.GetComponent<MainScreen>();
-        // Debug.Log(JsonUtility.ToJson(GameManager.Instance.GetCategoryInfos()));
-        // _mainScreenScript.Initialize(categoryInfos);
+        MainScreen _mainScreenScript = mainScreen.GetComponent<MainScreen>();
+        _mainScreenScript.Initialize(categoryInfos);
     }
 
 
@@ -67,9 +63,42 @@ public class ScreenManager : SingletonComponent<ScreenManager>
     {
         HideCurrentScreen();
         GameObject screenActive = GetScreenById(idScreen);
-        screenActive.SetActive(true);
+        SetVisibility(screenActive, true);
         currentScreen = screenActive;
         backStack.Add(idScreen);
+    }
+    public void ShowScreenMain()
+    {
+        if (currentScreen) SetVisibility(currentScreen, false);
+        SetVisibility(mainScreen, true);
+        currentScreen = mainScreen;
+        backStack.Add("main");
+    }
+    public void ShowScreenGame()
+    {
+        if (currentScreen) SetVisibility(currentScreen, false);
+        SetVisibility(gameScreen, true);
+        currentScreen = gameObject;
+        backStack.Add("game");
+        
+    }
+
+    public void ShowScreenLevel(CategoryInfo ActiveCategoryInfo)
+    {
+        if (currentScreen) SetVisibility(currentScreen, false);
+        SetVisibility(levelScreen, true);
+        currentScreen = levelScreen;
+        backStack.Add("levels");
+
+        LevelScreen _levelScript = levelScreen.GetComponent<LevelScreen>();
+        _levelScript.Initialize(ActiveCategoryInfo);
+    }
+    private void SetVisibility(GameObject screen, bool isVisible)
+    {
+        CanvasGroup screenCG = screen.GetComponent<CanvasGroup>();
+        screenCG.alpha = isVisible ? 1f : 0f;
+        screenCG.interactable = isVisible ? true : false;
+        screenCG.blocksRaycasts = isVisible ? true : false;
     }
 
     void HideCurrentScreen()
@@ -97,7 +126,7 @@ public class ScreenManager : SingletonComponent<ScreenManager>
     void Start()
     {
         backStack = new List<string>();
-        ShowScreen("main");
+        ShowScreenMain();
     }
     // Update is called once per frame
     void Update()

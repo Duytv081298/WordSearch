@@ -16,15 +16,23 @@ public class MainScreen : MonoBehaviour
     // 	private CategoryInfo						selectedCategory;
 
     void Start()
-    { 
-        this.categoryInfos = GameManager.Instance.GetCategoryInfos();
+    {
+
+    }
+    public void Initialize(List<CategoryInfo> categoryInfos)
+    {
         for (int i = 0; i < categoryInfos.Count; i++)
         {
             var category = categoryInfos[i];
             GameObject _categoryItem = Instantiate(categoryItemPrefab, Vector3.zero, Quaternion.identity, categoryListContainer);
             CategoryListItem _categoryScript = _categoryItem.GetComponent<CategoryListItem>();
-            _categoryScript.Initialize(category);
+            _categoryScript.Initialize(category, i);
         }
+    }
+
+    void Initialize()
+    {
+
     }
 
     // Update is called once per frame

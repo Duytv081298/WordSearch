@@ -65,7 +65,7 @@ public class CategorySelectedPopup : MonoBehaviour
     public void PlayNextLevelProgress()
     {
         Debug.Log("PlayNextLevelProgress");
-        CategoryInfo activeCategory = GameManager.Instance.GetActiveCategory();
+        CategoryInfo activeCategory = GameManager.Instance.ActiveCategoryInfo;
         int activeLevel = GameManager.Instance.GetLastCompletedLevels()[activeCategory.saveId];
         TextAsset levelFile = activeCategory.levelFiles[activeLevel];
     }
@@ -73,6 +73,7 @@ public class CategorySelectedPopup : MonoBehaviour
     {
         ClosePopupCategorySelected();
         OpenModeContainer();
+        ScreenManager.Instance.ShowScreenLevel(GameManager.Instance.ActiveCategoryInfo);
     }
 
     public void OnDifficultySelected(int difficultyIndex)

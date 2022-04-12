@@ -25,8 +25,7 @@ public class CategoryListItem : MonoBehaviour
     [SerializeField] private Text coinsUnlockAmountText = null;
     [SerializeField] private Text keysUnlockAmountText = null;
     [SerializeField] private Text iapUnlockPriceText = null;
-    public CategoryInfo categoryU = null;
-
+    private int idCategory = 0;
     public string getText()
     {
         return this.nameText.text;
@@ -37,9 +36,9 @@ public class CategoryListItem : MonoBehaviour
         this.nameText.text = text;
     }
 
-    public void Initialize(CategoryInfo category)
+    public void Initialize(CategoryInfo category, int id)
     {
-        this.categoryU = category;
+        this.idCategory = id;
         nameText.text = category.displayName;
         iconImage.sprite = category.icon;
         backgroundImage.color = category.categoryColor;
@@ -55,7 +54,6 @@ public class CategoryListItem : MonoBehaviour
     }
     void SetLocked(CategoryInfo category)
     {
-
         bool isCategoryLocked = category.lockType == 0 ? false : true;
 
         progressBarContainer.SetActive(!isCategoryLocked);
@@ -84,7 +82,7 @@ public class CategoryListItem : MonoBehaviour
     public void Onclick()
     {
         // Debug.Log(JsonUtility.ToJson(categoryU));
-        GameManager.Instance.SetActiveCategory(categoryU);
+        GameManager.Instance.SetActiveCategory(this.idCategory);
         PopupContainer.Instance.ShowCategorySelectedPopup();
         // ScreenManager.Instance.ChangeGameScreen();
         // Debug.Log(GameManager.Instance.GetActiveCategory());

@@ -4,7 +4,17 @@ using UnityEngine;
 
 public class GameManager : SingletonComponent<GameManager>
 {
-
+    public enum GameMode
+    {
+        Casual,
+        Progress
+    }
+    public enum GameState
+    {
+        None,
+        GeneratingBoard,
+        BoardActive
+    }
     [Header("Data")]
     [SerializeField] private string characters = null;
     [SerializeField] private List<CategoryInfo> categoryInfos = null;
@@ -19,30 +29,21 @@ public class GameManager : SingletonComponent<GameManager>
     [SerializeField] private int coinCostLetterHint = 0;
 
     [Header("Components")]
+    [SerializeField] private CharacterGrid characterGrid = null;
+    [SerializeField] private WordListContainer wordListContainer = null;
     [SerializeField] private ScreenManager screenManager = null;
 
-    [SerializeField] private CategoryInfo activeCategoryInfo = null;
-    [SerializeField] private LevelInfo activeLevel = null;
+    public CategoryInfo ActiveCategoryInfo { get; private set; }
 
-  public List<CategoryInfo> GetCategoryInfos()
-    {
-        return this.categoryInfos;
-    }
+    public Board ActiveBoard { get; private set; }
 
-    public void SetCategoryInfos(List<CategoryInfo> categoryInfos)
-    {
-        this.categoryInfos = categoryInfos;
-    }
-    public LevelInfo GetActiveLevel()
-    {
-        return this.activeLevel;
-    }
 
-    public void SetActiveLevel(LevelInfo activeLevel)
+    public GameMode ActiveGameMode { get; private set; }
+    public GameState ActiveGameState { get; private set; }
+    public void SetActiveCategory(int idCategory)
     {
-        this.activeLevel = activeLevel;
+        ActiveCategoryInfo = categoryInfos[idCategory];
     }
-
     public Dictionary<string, int> lastCompletedLevels = null;
 
     public Dictionary<string, int> GetLastCompletedLevels()
@@ -53,17 +54,6 @@ public class GameManager : SingletonComponent<GameManager>
     public void SetLastCompletedLevels(Dictionary<string, int> lastCompletedLevels)
     {
         this.lastCompletedLevels = lastCompletedLevels;
-    }
-
-
-    public CategoryInfo GetActiveCategory()
-    {
-        return this.activeCategoryInfo;
-    }
-
-    public void SetActiveCategory(CategoryInfo category)
-    {
-        this.activeCategoryInfo = category;
     }
 
     // [SerializeField] private CharacterGrid characterGrid = null;
@@ -81,13 +71,16 @@ public class GameManager : SingletonComponent<GameManager>
     {
 
         lastCompletedLevels = new Dictionary<string, int>();
+
+        characterGrid.Initialize();
+        wordListContainer.Initialize();
         // Debug.Log(JsonUtility.ToJson(categoryInfos[0]));
     }
 
     void Start()
     {
-        // screenManager.Initialize(categoryInfos);
         SaveableManager.Instance.LoadSaveData(categoryInfos);
+        screenManager.Initialize(categoryInfos);
         // Debug.Log(lastCompletedLevels["birds"]);
     }
 
@@ -95,6 +88,84 @@ public class GameManager : SingletonComponent<GameManager>
     void Update()
     {
 
+    }
+
+    Board BoardFromJson(CategoryInfo categoryInfo, int level)
+    {
+        TextAsset levelFile = categoryInfo.levelFiles[level];
+        Board board = new Board();
+        board.FromJson(levelFile);
+        // Debug.Log(board.foundWords);
+        return board;
+    }
+
+    public void StartLevel(CategoryInfo categoryInfo, int levelIndex)
+    {
+
+        ActiveBoard = BoardFromJson(categoryInfo, levelIndex);
+
+        SetupGame(ActiveBoard);
+
+        ScreenManager.Instance.ShowScreenGame();
+
+    }
+    private void SetupGame(Board ActiveBoard)
+    {
+        characterGrid.SetUp(ActiveBoard);
+        wordListContainer.Setup(ActiveBoard);
+
+
+        ActiveGameState = GameState.BoardActive;
+    }
+
+    public string OnWordSelected(string selectedWord)
+    {
+        string selectedWordReversed = "";
+
+        // Get the reverse version of the word
+        for (int i = 0; i < selectedWord.Length; i++)
+        {
+            char character = selectedWord[i];
+
+            selectedWordReversed = character + selectedWordReversed;
+        }
+
+        // Check if the selected word equals any of the hidden words
+        for (int i = 0; i < ActiveBoard.words.Count; i++)
+        {
+            // Get the word and the word with no spaces without spaces
+            string word = ActiveBoard.words[i];
+
+            // Check if the word we has already been found
+            if (ActiveBoard.foundWords.Contains(word))
+            {
+                continue;
+            }
+
+            // Spaces are removed from the word before being places on the board so we need to compare the word without any spaces in it
+            string wordNoSpaces = word.Replace(" ", "");
+
+            // Check if the word matches the selected word or the selected word reversed
+            if (selectedWord == wordNoSpaces || selectedWordReversed == wordNoSpaces)
+            {
+                // Add the word to the hash set of found words for this board
+                ActiveBoard.foundWords.Add(word);
+
+                Debug.Log(word);
+                // Notify the word list a word has been found
+                wordListContainer.SetWordFound(word);
+
+                if (ActiveBoard.foundWords.Count == ActiveBoard.words.Count)
+                {
+                    // BoardCompleted();
+                }
+
+                // Return the word with the spaces
+                return word;
+            }
+        }
+
+        return null;
     }
 
 }

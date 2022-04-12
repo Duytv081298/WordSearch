@@ -11,11 +11,12 @@ public class CharacterGridItem : MonoBehaviour
     public int Col { get; set; }
     public bool IsHighlighted { get; set; }
 
-    public void Setup(char text, Vector3 scale)
+    public void Setup(char text, Vector3 scale, Vector2 scaledLetterOffsetInCell)
     {
         // Debug.Log(text);
         characterText.text = text.ToString();
         characterText.transform.localScale = scale;
+        (transform as RectTransform).anchoredPosition = scaledLetterOffsetInCell;
     }
       public void OnPointerDown(PointerEventData eventData)
     {
