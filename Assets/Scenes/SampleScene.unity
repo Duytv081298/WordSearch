@@ -3147,9 +3147,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxCellSize: 200
   selectedWord: {fileID: 49875781}
-  letterFont: {fileID: 0}
-  letterFontSize: 0
-  letterColor: {r: 1, g: 1, b: 1, a: 1}
+  letterFont: {fileID: 12800000, guid: ee2db8f362293974f9430665b34f4323, type: 3}
+  letterFontSize: 150
+  letterColor: {r: 0, g: 0, b: 0, a: 1}
   letterHighlightedColor: {r: 1, g: 1, b: 1, a: 1}
   letterOffsetInCell: {x: 0, y: 0}
   highlightPosition: 1
@@ -14048,8 +14048,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 597182286}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: HintHighlightWord
         m_Mode: 1
         m_Arguments:
@@ -15154,8 +15154,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 597182286}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: HintHighlightLetter
         m_Mode: 1
         m_Arguments:

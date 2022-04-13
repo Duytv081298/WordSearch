@@ -107,46 +107,6 @@ MonoBehaviour:
   coinsUnlockAmountText: {fileID: 6044263206580376631}
   keysUnlockAmountText: {fileID: 6048240299669181025}
   iapUnlockPriceText: {fileID: 6044041755108901053}
-  categoryU:
-    displayName: BIRDS
-    saveId: birds
-    icon: {fileID: 21300000, guid: d40eb265867bace4a86af6e7ea57f7c0, type: 3}
-    categoryColor: {r: 0.16078429, g: 0.5434489, b: 0.8, a: 1}
-    lockType: 0
-    unlockAmount: 0
-    iapProductId: 
-    wordFile: {fileID: 4900000, guid: c4b938be0c193d4439aed930d1c60dfe, type: 3}
-    levelFiles:
-    - {fileID: 4900000, guid: d1fb27047a75a0646939aa72f05000c9, type: 3}
-    - {fileID: 4900000, guid: 0640169f78ff4424fb0c8303f145bc55, type: 3}
-    - {fileID: 4900000, guid: 4784f28b13a7d744792d83e5479bcd7c, type: 3}
-    - {fileID: 4900000, guid: 0535de9dd26d98148a3060be8fdf2fe3, type: 3}
-    - {fileID: 4900000, guid: c10c22a61b55f224db8324dbef16e326, type: 3}
-    - {fileID: 4900000, guid: a08e6d5f1b59a4647881bce049d6c23f, type: 3}
-    - {fileID: 4900000, guid: 005e900c83dc6484d8b1f69a090fc6a3, type: 3}
-    - {fileID: 4900000, guid: e174e82c6ddefcb4cbe16dab90d885c8, type: 3}
-    - {fileID: 4900000, guid: e07c377e5c625e1479417db090a0c449, type: 3}
-    - {fileID: 4900000, guid: 761e70838d04b0442b0b468ae8940c66, type: 3}
-    - {fileID: 4900000, guid: 6024c51d00cd2fc41a31b85e5925cf85, type: 3}
-    - {fileID: 4900000, guid: f8d3a27dac1c7c84598450cf443f2743, type: 3}
-    - {fileID: 4900000, guid: bf2c84a40f502f04e85581bc9024e51c, type: 3}
-    - {fileID: 4900000, guid: 4b5cc33aad6e667438adcef89f483c94, type: 3}
-    - {fileID: 4900000, guid: 12f1dcb742814064e9069f5117f62e38, type: 3}
-    - {fileID: 4900000, guid: 4b1e5bee9e508ed478b011a676f7c714, type: 3}
-    - {fileID: 4900000, guid: 26e5eff4c99f18547bbd0a17664d3e85, type: 3}
-    - {fileID: 4900000, guid: 7c44a23f5c540ab478c769e6159db648, type: 3}
-    - {fileID: 4900000, guid: 4e7a91188bd91994386233176e72717a, type: 3}
-    - {fileID: 4900000, guid: 35cc3232babf95341847852155f58ebc, type: 3}
-    - {fileID: 4900000, guid: 278127ab0b236364da5cc302c7791170, type: 3}
-    - {fileID: 4900000, guid: 22cf5829b1c9c5f498f0627d1650a5ab, type: 3}
-    - {fileID: 4900000, guid: 907fb8880bdcddc44bc2baf80e1ba967, type: 3}
-    - {fileID: 4900000, guid: f847435f0a611934ca2d5d2842fc4aee, type: 3}
-    - {fileID: 4900000, guid: f066b5e3e90ad7148bbc0e7e7c493832, type: 3}
-    - {fileID: 4900000, guid: dd1a156c9f3781d44aba3389eca65cfc, type: 3}
-    - {fileID: 4900000, guid: 4050295e4d9eae64d8faeb4c9579f512, type: 3}
-    - {fileID: 4900000, guid: bcd57490158a46e439a424f00188e57c, type: 3}
-    - {fileID: 4900000, guid: eff3681929c304349825762d5fa84a13, type: 3}
-    - {fileID: 4900000, guid: c6ff8f26795f21741ad189d2bbfc18e9, type: 3}
 --- !u!114 &4942156133460821727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,7 +870,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5867028777573802859
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1155,10 +1115,10 @@ RectTransform:
   m_Father: {fileID: 5866433957095807777}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 249.5, y: -29}
+  m_SizeDelta: {x: 65, y: 58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5863867506206918967
 CanvasRenderer:
@@ -1459,10 +1419,10 @@ RectTransform:
   m_Father: {fileID: 5866433957095807777}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 76, y: -29}
+  m_SizeDelta: {x: 152, y: 58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5863812307915340139
 CanvasRenderer:
@@ -1800,9 +1760,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd8683c2145909458096e39c139765c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barFillArea: {fileID: 0}
-  bar: {fileID: 0}
-  minSize: 60
+  barFillArea: {fileID: 5866698480993271707}
+  bar: {fileID: 5866227248606435049}
+  minSize: 70
 --- !u!1 &5941127051311987319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1836,10 +1796,10 @@ RectTransform:
   m_Father: {fileID: 5866433957095807777}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 184.5, y: -22.5}
+  m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6043916083477511263
 MonoBehaviour:
@@ -2331,7 +2291,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 282, y: 58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6048224199824141895
 MonoBehaviour:

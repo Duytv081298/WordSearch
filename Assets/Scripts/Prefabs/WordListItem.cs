@@ -16,7 +16,6 @@ public class WordListItem : MonoBehaviour
 
     public void SetWordFound()
     {
-        Debug.Log(11111111);
         foundIndicator.SetActive(true);
     }
 

@@ -27,7 +27,7 @@ public class GameScreen : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("start game screen");
+        // Debug.Log("start game screen");
         //  Debug.Log(GameManager.Instance.GetActiveLevel());
         // gameObject.SetActive(true);
         // Debug.Log(GameManager.Instance.ActiveBoard);

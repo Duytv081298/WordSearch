@@ -31,22 +31,23 @@ public class LevelListItem : MonoBehaviour
 
         levelText.text = "LEVEL " + (this.levelIndex + 1).ToString();
         CategoryInfo activeCategory = GameManager.Instance.ActiveCategoryInfo;
-        int activeLevel = GameManager.Instance.GetLastCompletedLevels()[activeCategory.saveId];
+        // int activeLevel = GameManager.Instance.LastCompletedLevels[activeCategory.saveId];
 
         categoryIcon.sprite = activeCategory.icon;
 
-        if (this.levelIndex < activeLevel) SetCompleted();
-        else if (this.levelIndex == activeLevel) SetPlayable();
-        else
+        if (GameManager.Instance.IsLevelCompleted(activeCategory, levelIndex))
+        {
+            SetCompleted();
+        }
+        else if (GameManager.Instance.IsLevelLocked(activeCategory, levelIndex))
         {
             isEvent = false;
             SetLocked();
         }
-        // this.categoryU = category;
-        // nameText.text = category.displayName;
-        // backgroundImage.color = category.categoryColor;
-        // SetProgress(category);
-        // SetLocked(category);
+        else
+        {
+            SetPlayable();
+        }
     }
 
     private void SetCompleted()

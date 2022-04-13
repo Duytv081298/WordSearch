@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class SelectedWord : MonoBehaviour
 {
-
     [SerializeField] private Text selectedWordText = null;
     [SerializeField] private GameObject selectedWordContainer = null;
     [SerializeField] private Image selectedWordBkgImage = null;

@@ -25,20 +25,13 @@ public class CategoryListItem : MonoBehaviour
     [SerializeField] private Text coinsUnlockAmountText = null;
     [SerializeField] private Text keysUnlockAmountText = null;
     [SerializeField] private Text iapUnlockPriceText = null;
-    private int idCategory = 0;
-    public string getText()
-    {
-        return this.nameText.text;
-    }
+    private CategoryInfo category = null;
 
-    public void setText(string text)
-    {
-        this.nameText.text = text;
-    }
 
+    private bool isEvent = true;
     public void Initialize(CategoryInfo category, int id)
     {
-        this.idCategory = id;
+        this.category = category;
         nameText.text = category.displayName;
         iconImage.sprite = category.icon;
         backgroundImage.color = category.categoryColor;
@@ -48,8 +41,8 @@ public class CategoryListItem : MonoBehaviour
     void SetProgress(CategoryInfo category)
     {
         int totalLevels = category.levelFiles.Count;
-        int numLevelsCompleted = 1;
-        // levelProgressBar.SetProgress((float)numLevelsCompleted / (float)totalLevels);
+        int numLevelsCompleted = GameManager.Instance.LastCompletedLevels.ContainsKey(category.saveId) ? GameManager.Instance.LastCompletedLevels[category.saveId] + 1 : 0;
+        levelProgressBar.SetProgress((float)numLevelsCompleted / (float)totalLevels);
         levelProgressText.text = string.Format("{0} / {1}", numLevelsCompleted, totalLevels);
     }
     void SetLocked(CategoryInfo category)
@@ -58,11 +51,10 @@ public class CategoryListItem : MonoBehaviour
 
         progressBarContainer.SetActive(!isCategoryLocked);
         lockedContainer.SetActive(isCategoryLocked);
+        isEvent = !isActiveAndEnabled;
 
-        // Debug.Log(category.unlockAmount);
-        // Debug.Log(JsonUtility.ToJson(category.lockType));
-        // Debug.Log(JsonUtility.ToJson(CategoryInfo.LockType.Coins));
-
+        coinsUnlockContainer.SetActive(isCategoryLocked && category.lockType == CategoryInfo.LockType.Coins);
+        keysUnlockContainer.SetActive(isCategoryLocked && category.lockType == CategoryInfo.LockType.Keys);
         switch (category.lockType)
         {
             case CategoryInfo.LockType.Coins:
@@ -81,10 +73,14 @@ public class CategoryListItem : MonoBehaviour
 
     public void Onclick()
     {
-        // Debug.Log(JsonUtility.ToJson(categoryU));
-        GameManager.Instance.SetActiveCategory(this.idCategory);
-        PopupContainer.Instance.ShowCategorySelectedPopup();
-        // ScreenManager.Instance.ChangeGameScreen();
-        // Debug.Log(GameManager.Instance.GetActiveCategory());
+        if (category.lockType == 0)
+        {
+            GameManager.Instance.ActiveCategoryInfo = this.category;
+            PopupContainer.Instance.ShowCategorySelectedPopup();
+        }
+        else
+        {
+
+        }
     }
 }

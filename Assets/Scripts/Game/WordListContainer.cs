@@ -11,16 +11,6 @@ public class WordListContainer : MonoBehaviour
 
     private Dictionary<string, WordListItem> wordListItems;
 
-    private void Awake()
-    {
-        // Initialize();
-    }
-    private void Start()
-    {
-        Debug.Log("WordListContainer");
-    }
-
-
     // Start is called before the first frame update
 
 
@@ -30,7 +20,7 @@ public class WordListContainer : MonoBehaviour
     }
     public void Setup(Board board)
     {
-        Debug.Log("WordListContainer Setup");
+        // Debug.Log("WordListContainer Setup");
         foreach (var word in board.words)
         {
 

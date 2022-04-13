@@ -28,6 +28,18 @@ public class PopupContainer : SingletonComponent<PopupContainer>
         .SetEase(Ease.OutBack);
 
     }
+    
+    public void ShowNotEnoughCoinsPopup()
+    {
+        background.SetActive(true);
+        // Debug.Log(categorySelectedPopup);
+        // Debug.Log(categorySelectedPopup.transform);
+        notEnoughCoinsPopup.transform.localScale += scaleChange;
+        notEnoughCoinsPopup.SetActive(true);
+        notEnoughCoinsPopup.transform.DOScale(Vector3.one, 0.5f)
+        .SetEase(Ease.OutBack);
+
+    }
 
 
     public void ClosePopup()

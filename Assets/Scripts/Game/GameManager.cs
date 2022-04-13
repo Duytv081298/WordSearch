@@ -32,56 +32,33 @@ public class GameManager : SingletonComponent<GameManager>
     [SerializeField] private CharacterGrid characterGrid = null;
     [SerializeField] private WordListContainer wordListContainer = null;
     [SerializeField] private ScreenManager screenManager = null;
-
-    public CategoryInfo ActiveCategoryInfo { get; private set; }
-
-    public Board ActiveBoard { get; private set; }
-
-
-    public GameMode ActiveGameMode { get; private set; }
-    public GameState ActiveGameState { get; private set; }
-    public void SetActiveCategory(int idCategory)
-    {
-        ActiveCategoryInfo = categoryInfos[idCategory];
-    }
-    public Dictionary<string, int> lastCompletedLevels = null;
-
-    public Dictionary<string, int> GetLastCompletedLevels()
-    {
-        return this.lastCompletedLevels;
-    }
-
-    public void SetLastCompletedLevels(Dictionary<string, int> lastCompletedLevels)
-    {
-        this.lastCompletedLevels = lastCompletedLevels;
-    }
-
-    // [SerializeField] private CharacterGrid characterGrid = null;
-    // [SerializeField] private WordList wordList = null;
-    // [SerializeField] private GameObject loadingIndicator = null;
-
-    // public Dictionary<string, Board> BoardsInProgress { get; private set; }
-    // public Dictionary<string, int> LastCompletedLevels { get; private set; }
-    // public Dictionary<string, JSONNode> SavedBoards { get; private set; }
-    // public HashSet<string> UnlockedCategories { get; private set; }
-
     public int Coins { get; set; }
     public int Keys { get; set; }
+    public CategoryInfo ActiveCategoryInfo { get; set; }
+    public Board ActiveBoard { get; private set; }
+    public GameMode ActiveGameMode { get; private set; }
+    public GameState ActiveGameState { get; private set; }
+    public Dictionary<string, int> LastCompletedLevels = null;
+
     void Awake()
     {
 
-        lastCompletedLevels = new Dictionary<string, int>();
+        LastCompletedLevels = new Dictionary<string, int>();
 
         characterGrid.Initialize();
         wordListContainer.Initialize();
-        // Debug.Log(JsonUtility.ToJson(categoryInfos[0]));
     }
 
     void Start()
     {
-        SaveableManager.Instance.LoadSaveData(categoryInfos);
+        // SaveableManager.Instance.LoadSaveData(categoryInfos);
         screenManager.Initialize(categoryInfos);
         // Debug.Log(lastCompletedLevels["birds"]);
+
+        // LevelArray test = new LevelArray();
+        // SaveableManager.Instance.SetString("key1" ,test.SaveToString());
+        // string testtr = SaveableManager.Instance.GetString("key1");
+        // Debug.Log(testtr);
     }
 
     // Update is called once per frame
@@ -93,6 +70,7 @@ public class GameManager : SingletonComponent<GameManager>
     Board BoardFromJson(CategoryInfo categoryInfo, int level)
     {
         TextAsset levelFile = categoryInfo.levelFiles[level];
+        Debug.Log(levelFile);
         Board board = new Board();
         board.FromJson(levelFile);
         // Debug.Log(board.foundWords);
@@ -122,7 +100,7 @@ public class GameManager : SingletonComponent<GameManager>
     {
         string selectedWordReversed = "";
 
-        // Get the reverse version of the word
+        // Đảo ngược chuỗi text
         for (int i = 0; i < selectedWord.Length; i++)
         {
             char character = selectedWord[i];
@@ -133,31 +111,31 @@ public class GameManager : SingletonComponent<GameManager>
         // Check if the selected word equals any of the hidden words
         for (int i = 0; i < ActiveBoard.words.Count; i++)
         {
-            // Get the word and the word with no spaces without spaces
             string word = ActiveBoard.words[i];
 
-            // Check if the word we has already been found
+            // Kiểm tra từ đã được tìm thấy chưa
             if (ActiveBoard.foundWords.Contains(word))
             {
                 continue;
             }
 
-            // Spaces are removed from the word before being places on the board so we need to compare the word without any spaces in it
+            // Loại bỏ khoảng trắng
             string wordNoSpaces = word.Replace(" ", "");
 
-            // Check if the word matches the selected word or the selected word reversed
+            // kiểm tra sự trùng khớp
             if (selectedWord == wordNoSpaces || selectedWordReversed == wordNoSpaces)
             {
-                // Add the word to the hash set of found words for this board
+                // Thêm vào danh sách từ đã tìm thấy
                 ActiveBoard.foundWords.Add(word);
 
-                Debug.Log(word);
-                // Notify the word list a word has been found
+                // Thông báo cho wordListContainer tiến hành đánh dấu word đã được chọn
                 wordListContainer.SetWordFound(word);
 
+                //kiểm tra đã tìm đủ word chưa
                 if (ActiveBoard.foundWords.Count == ActiveBoard.words.Count)
                 {
                     // BoardCompleted();
+                    Debug.Log("Thắng");
                 }
 
                 // Return the word with the spaces
@@ -166,6 +144,94 @@ public class GameManager : SingletonComponent<GameManager>
         }
 
         return null;
+    }
+
+
+    public void HintHighlightWord()
+    {
+
+        // Coins = 1000;
+        if (ActiveBoard == null)
+        {
+            return;
+        }
+
+        List<string> nonFoundWords = new List<string>();
+
+        // Lấy ra các từ chưa được tìm thấy
+        for (int i = 0; i < ActiveBoard.words.Count; i++)
+        {
+            string word = ActiveBoard.words[i];
+
+            if (!ActiveBoard.foundWords.Contains(word))
+            {
+                nonFoundWords.Add(word);
+            }
+        }
+
+        // Đảm bảo danh dách không âm
+        if (nonFoundWords.Count == 0)
+        {
+            Debug.Log("nonFoundWords.Count = 0 ");
+            return;
+        }
+
+        // Check lượng coins Player có
+        if (Coins < coinCostWordHint)
+        {
+            Debug.Log("Coins < coinCostWordHint");
+            // Show the not enough coins popup
+            // PopupManager.Instance.Show("not_enough_coins");
+            PopupContainer.Instance.ShowNotEnoughCoinsPopup();
+        }
+        else
+        {
+            // Pick a random word to show
+            string wordToShow = nonFoundWords[Random.Range(0, nonFoundWords.Count)];
+
+            // Set it as selected
+            OnWordSelected(wordToShow);
+
+            // Highlight the word
+            characterGrid.ShowWordHint(wordToShow);
+
+            // Deduct the cost
+            Coins -= coinCostWordHint;
+
+            // SoundManager.Instance.Play("hint-used");
+        }
+    }
+
+    public void HintHighlightLetter()
+    {
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //trả về true nếu level completed
+    public bool IsLevelCompleted(CategoryInfo categoryInfo, int levelIndex)
+    {
+        return LastCompletedLevels.ContainsKey(categoryInfo.saveId) && levelIndex <= LastCompletedLevels[categoryInfo.saveId];
+    }
+
+    // trả về true nếu level đang bị khóa
+    public bool IsLevelLocked(CategoryInfo categoryInfo, int levelIndex)
+    {
+        return levelIndex > 0 && (!LastCompletedLevels.ContainsKey(categoryInfo.saveId) || levelIndex > LastCompletedLevels[categoryInfo.saveId] + 1);
     }
 
 }

@@ -18,9 +18,4 @@ public class CharacterGridItem : MonoBehaviour
         characterText.transform.localScale = scale;
         (transform as RectTransform).anchoredPosition = scaledLetterOffsetInCell;
     }
-      public void OnPointerDown(PointerEventData eventData)
-    {
-        Debug.Log(22222222);
-        Debug.Log(this.gameObject.name + " Was Clicked.");
-    }
 }

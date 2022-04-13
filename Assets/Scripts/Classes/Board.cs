@@ -29,6 +29,8 @@ public class Board
     public List<string> words;
     public List<List<char>> boardCharacters;
     public List<WordPlacement> wordPlacements;
+
+    // tập hợp các từ đã được tìm thấy
     public HashSet<string> foundWords = new HashSet<string>();
 
     public HashSet<char> letterHintsUsed = new HashSet<char>();
@@ -72,6 +74,7 @@ public class Board
         for (int i = 0; i < json["foundWords"].AsArray.Count; i++)
         {
             foundWords.Add(json["foundWords"].AsArray[i].Value);
+            Debug.Log(json["foundWords"].AsArray[i].Value);
         }
         for (int i = 0; i < json["letterHintsUsed"].AsArray.Count; i++)
         {
