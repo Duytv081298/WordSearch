@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class LevelListItem : MonoBehaviour
+using PolyAndCode.UI;
+public class LevelListItem : MonoBehaviour, ICell
 {
-
     [SerializeField] private Text levelText = null;
     [SerializeField] private Image categoryIcon = null;
     [SerializeField] private Image completedIcon = null;
@@ -18,6 +17,11 @@ public class LevelListItem : MonoBehaviour
 
     private bool isEvent = true;
 
+
+    public void ConfigureCell(TextAsset levelFile, int cellIndex)
+    {
+        levelText.text = "LEVEL " + (cellIndex + 1).ToString();
+    }
 
     public void Initialize(TextAsset levelFile, int level)
     {

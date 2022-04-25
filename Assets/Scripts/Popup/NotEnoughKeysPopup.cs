@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class NotEnoughKeysPopup : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void CloseNotEnoughKeysPopup()
     {
-        
+        PopupContainer.Instance.ClosePopup();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

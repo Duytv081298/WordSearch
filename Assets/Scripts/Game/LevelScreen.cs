@@ -1,35 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class LevelScreen : MonoBehaviour
+using PolyAndCode.UI;
+public class LevelScreen : MonoBehaviour, IRecyclableScrollRectDataSource
 {
     // Start is called before the first frame update
-    [SerializeField] private GameObject levelItemPrefab = null;
-    [SerializeField] private RectTransform levlelListContainer = null;
+    // [SerializeField] private GameObject levelItemPrefab = null;
+    // [SerializeField] private RectTransform levlelListContainer = null;
+    [SerializeField] private TopBar topBar = null;
     [SerializeField] private string id = "levels";
-
-    void Start()
+    [SerializeField] RecyclableScrollRect _recyclableScrollRect;
+    private List<TextAsset> _contactList = new List<TextAsset>();
+    private void Awake()
     {
-        
+        _recyclableScrollRect.DataSource = this;
     }
-
-    public void Initialize(CategoryInfo ActiveCategoryInfo){
-        List<TextAsset> levelFiles = ActiveCategoryInfo.levelFiles;
-        for (int i = 0; i < levelFiles.Count; i++)
-        {
-            TextAsset levelFile = levelFiles[i];
-            GameObject _levelItem = Instantiate(levelItemPrefab, Vector3.zero, Quaternion.identity, levlelListContainer);
-            LevelListItem _levelScript = _levelItem.GetComponent<LevelListItem>();
-            _levelScript.Initialize(levelFile, i);
-        }
-    }
-
-
-
-    // Update is called once per frame
-    void Update()
+    public void Initialize(CategoryInfo activeCategoryInfo)
     {
+        _contactList = activeCategoryInfo.levelFiles;
+        _recyclableScrollRect.ReloadData();
+        topBar.SetCategoryName(activeCategoryInfo.displayName);
 
+    }
+    public int GetItemCount()
+    {
+        return _contactList.Count;
+    }
+    public void SetCell(ICell cell, int index)
+    {
+        var item = cell as LevelListItem;
+        item.Initialize(_contactList[index], index);
+    }
+    public void ReloadData()
+    {
+        _recyclableScrollRect.ReloadData();
     }
 }

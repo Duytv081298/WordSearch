@@ -1,43 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine;
 using UnityEngine.UI;
-
-public class MainScreen : MonoBehaviour
+using PolyAndCode.UI;
+public class MainScreen : MonoBehaviour, IRecyclableScrollRectDataSource
 {
-    [SerializeField] private GameObject categoryItemPrefab = null;
-    [SerializeField] private RectTransform categoryListContainer = null;
-    [SerializeField] private List<CategoryInfo> categoryInfos = null;
     [SerializeField] private string id = "main";
 
-    // [Space]
-    // private RecyclableListHandler<CategoryInfo>	categoryListHandler;
-    // 	private CategoryInfo						selectedCategory;
+    [SerializeField] RecyclableScrollRect _recyclableScrollRect;
 
+    [SerializeField] private List<CategoryInfo> categoryInfos = null;
+
+
+    private void Awake()
+    {
+        _recyclableScrollRect.DataSource = this;
+    }
     void Start()
     {
 
     }
+    public int GetItemCount()
+    {
+        return categoryInfos.Count;
+    }
+    public void SetCell(ICell cell, int index)
+    {
+        var item = cell as CategoryScripts;
+        item.Setup(categoryInfos[index], index);
+    }
+
     public void Initialize(List<CategoryInfo> categoryInfos)
     {
-        for (int i = 0; i < categoryInfos.Count; i++)
-        {
-            var category = categoryInfos[i];
-            GameObject _categoryItem = Instantiate(categoryItemPrefab, Vector3.zero, Quaternion.identity, categoryListContainer);
-            CategoryListItem _categoryScript = _categoryItem.GetComponent<CategoryListItem>();
-            _categoryScript.Initialize(category, i);
-        }
+
+        this.categoryInfos = categoryInfos;
+        _recyclableScrollRect.ReloadData();
     }
 
-    void Initialize()
+    public void ReloadData()
     {
-
+        _recyclableScrollRect.ReloadData();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 }

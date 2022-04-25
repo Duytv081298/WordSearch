@@ -86,19 +86,4 @@ public class LevelArray : MonoBehaviour
         this.winter = 0;
     }
 
-
-    public static LevelArray CreateFromJSON(string jsonString)
-    {
-        return JsonUtility.FromJson<LevelArray>(jsonString);
-    }
-
-    public void Load(string savedData)
-    {
-        JsonUtility.FromJsonOverwrite(savedData, this);
-    }
-
-    public string SaveToString()
-    {
-        return JsonUtility.ToJson(this);
-    }
 }

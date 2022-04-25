@@ -20,15 +20,13 @@ public class WordListContainer : MonoBehaviour
     }
     public void Setup(Board board)
     {
+        Clear();
         // Debug.Log("WordListContainer Setup");
         foreach (var word in board.words)
         {
 
             CreateWordListItem(word);
         }
-        // Debug.Log(activeLevel);
-        // Debug.Log(activeLevel.text);
-        // var test = JsonUtility.FromJson<LevelInfo>(activeLevel.ToString());
     }
 
     public void SetWordFound(string word)
@@ -62,8 +60,13 @@ public class WordListContainer : MonoBehaviour
         return _wordItemScript;
     }
     // Update is called once per frame
-    void Update()
+    public void Clear()
     {
+        foreach (KeyValuePair<string, WordListItem> item in wordListItems)
+        {
+            Destroy(item.Value.gameObject);
+        }
+        wordListItems.Clear();
 
     }
 }

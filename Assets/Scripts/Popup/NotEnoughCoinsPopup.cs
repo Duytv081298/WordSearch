@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class NotEnoughCoinsPopup : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public void ClickAD()
     {
-        
+        GameManager.Instance.Coins += 100;
+        CloseNotEnoughCoinsPopup();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CloseNotEnoughCoinsPopup()
     {
-        
+        PopupContainer.Instance.ClosePopup();
     }
 }

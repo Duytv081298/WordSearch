@@ -11,11 +11,16 @@ public class CharacterGridItem : MonoBehaviour
     public int Col { get; set; }
     public bool IsHighlighted { get; set; }
 
-    public void Setup(char text, Vector3 scale, Vector2 scaledLetterOffsetInCell)
+    public void Setup(char text, Color color, Vector3 scale, Vector2 scaledLetterOffsetInCell)
     {
         // Debug.Log(text);
         characterText.text = text.ToString();
+        characterText.color = color;
         characterText.transform.localScale = scale;
         (transform as RectTransform).anchoredPosition = scaledLetterOffsetInCell;
+    }
+    public string Log()
+    {
+        return string.Format("characterText: {0}, row: {1}, col: {2}, anchoredPosition: {3}", characterText.text, Row, Col, (transform as RectTransform).anchoredPosition);
     }
 }
