@@ -15,7 +15,7 @@ public class ScreenManager : SingletonComponent<ScreenManager>
     public void Initialize()
     {
         // MainScreen _mainScreenScript = mainScreen.GetComponent<MainScreen>();
-        mainScreen.Initialize(GameManager.Instance.CategoryInfos);
+        mainScreen.Initialize();
     }
     public void ShowScreenMain()
     {
@@ -36,7 +36,7 @@ public class ScreenManager : SingletonComponent<ScreenManager>
 
     }
 
-    public void ShowScreenLevel(CategoryInfo ActiveCategoryInfo)
+    public void ShowScreenLevel()
     {
         AddBackStack("levels");
         if (currentScreen) SetVisibility(currentScreen, false);
@@ -44,7 +44,7 @@ public class ScreenManager : SingletonComponent<ScreenManager>
         currentScreen = levelScreen.gameObject;
 
         // LevelScreen _levelScript = levelScreen.GetComponent<LevelScreen>();
-        levelScreen.Initialize(ActiveCategoryInfo);
+        levelScreen.Initialize();
     }
 
     private void AddBackStack(string nameScreen)
@@ -77,11 +77,11 @@ public class ScreenManager : SingletonComponent<ScreenManager>
     {
         backStack.Clear();
         ShowScreenMain();
-        mainScreen.ReloadData();
+        // mainScreen.ReloadData();
     }
 
     public void RefreshMainScreen(){
-        mainScreen.ReloadData();
+        // mainScreen.ReloadData();
     }
 
 
@@ -128,7 +128,7 @@ public class ScreenManager : SingletonComponent<ScreenManager>
                 currentScreen = mainScreen.gameObject;
                 SetVisibility(mainScreen.gameObject, true);
                 MainScreen _mainScreenScript = mainScreen.GetComponent<MainScreen>();
-                _mainScreenScript.ReloadData();
+                // _mainScreenScript.ReloadData();
                 break;
             case "levels":
                 currentScreen = levelScreen.gameObject;

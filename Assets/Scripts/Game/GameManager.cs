@@ -149,6 +149,7 @@ public class GameManager : SingletonComponent<GameManager>
         {
             ScreenManager.Instance.ShowScreenGame();
             topBar.SetTextLevel(levelIndex);
+            topBar.SetCategoryName(ActiveCategoryInfo.displayName);
         }
 
         foreach (string foundWord in board.foundWords)

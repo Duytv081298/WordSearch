@@ -7,6 +7,7 @@ public class WordListItem : MonoBehaviour
 {
     [SerializeField] private Text wordText = null;
     [SerializeField] private GameObject foundIndicator = null;
+    [SerializeField] private CanvasGroup _wordCVG = null;
 
     public void Setup(string word)
     {
@@ -16,7 +17,19 @@ public class WordListItem : MonoBehaviour
 
     public void SetWordFound()
     {
-        foundIndicator.SetActive(true);
+        // foundIndicator.SetActive(true);
+        // wordText.color = Color.grey;
+        _wordCVG.alpha = 0.5f;
+    }
+    public void SetAlpha(bool isActive)
+    {
+        _wordCVG.alpha = isActive ? 1 : 0;
+        _wordCVG.interactable = isActive;
+        _wordCVG.blocksRaycasts = isActive;
+    }
+    public void SetParent(RectTransform parent)
+    {
+        transform.SetParent(parent);
     }
 
 }

@@ -141,7 +141,7 @@ public class TestScriptCategory : ExpandableListItem<CategoryInfo>
     {
         // Debug.Log("click: " + category.displayName);
         // Don't call Expand or collapse while the handler is expanding an item, the handler will just ignore those calls
-        Debug.Log("IsExpanded: " + IsExpanded);
+        // Debug.Log("IsExpanded: " + IsExpanded);
         if (ExpandableListHandler.IsExpandingOrCollapsing)
         {
             return;
@@ -155,7 +155,7 @@ public class TestScriptCategory : ExpandableListItem<CategoryInfo>
         else
         {
 
-            Debug.Log(GameManager.Instance.IsCategoryLocked(category));
+            // Debug.Log(GameManager.Instance.IsCategoryLocked(category));
             if (GameManager.Instance.IsCategoryLocked(category))
             {
                 PopupContainer.Instance.ShowUnlockCategoryPopup(this.category);

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class TopBar : MonoBehaviour
 {
+    [SerializeField] private CanvasGroup SettingsButton = null;
+    [SerializeField] private CanvasGroup MenuButton = null;
     [SerializeField] private CanvasGroup backButton = null;
     [SerializeField] private CanvasGroup mainScreenContainer = null;
     [SerializeField] private CanvasGroup categoryContainer = null;
@@ -36,7 +38,7 @@ public class TopBar : MonoBehaviour
         {
             mainScreenContainer.alpha = 0f;
             categoryContainer.alpha = 1f;
-            if(toScreenId == "levels") levelNumberText.gameObject.SetActive(false);
+            if (toScreenId == "levels") levelNumberText.gameObject.SetActive(false);
         }
     }
 
@@ -48,6 +50,14 @@ public class TopBar : MonoBehaviour
     {
         levelNumberText.gameObject.SetActive(true);
         levelNumberText.text = "LEVEL " + (level + 1);
+    }
+    public void SetAlphaSettingsButton(bool alpha)
+    {
+        backButton.alpha = alpha ? 1f : 0f;
+    }
+    public void SetAlphaMenuButton(bool alpha)
+    {
+        backButton.alpha = alpha ? 1f : 0f;
     }
     public void SetAlphaBackButton(bool alpha)
     {

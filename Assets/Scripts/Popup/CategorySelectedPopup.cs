@@ -103,7 +103,7 @@ public class CategorySelectedPopup : MonoBehaviour
     {
         ClosePopupCategorySelected();
         OpenModeContainer();
-        ScreenManager.Instance.ShowScreenLevel(GameManager.Instance.ActiveCategoryInfo);
+        ScreenManager.Instance.ShowScreenLevel();
     }
 
     public void OnDifficultySelected(int difficultyIndex)

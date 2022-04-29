@@ -15,23 +15,29 @@ public class WordListLayoutGroup : LayoutGroup
 
     #region Unity Methods
 
+    // Vào 1 // Luồng 1
     public override void CalculateLayoutInputHorizontal()
     {
+        // Debug.Log("CalculateLayoutInputHorizontal");
         CalculateLayoutInputForAxis(0);
     }
-
-    public override void CalculateLayoutInputVertical()
-    {
-        CalculateLayoutInputForAxis(1);
-    }
-
+    // Vào 1 // Luồng 2
     public override void SetLayoutHorizontal()
     {
+        // Debug.Log("SetLayoutHorizontal");
         SetLayoutAlongAxis(0);
     }
 
+    // Vào 1 // Luồng 3
+    public override void CalculateLayoutInputVertical()
+    {
+        // Debug.Log("CalculateLayoutInputVertical");
+        CalculateLayoutInputForAxis(1);
+    }
+    // Vào 1 // Luồng 4
     public override void SetLayoutVertical()
     {
+        // Debug.Log("SetLayoutVertical");
         SetLayoutAlongAxis(1);
     }
 
@@ -39,8 +45,11 @@ public class WordListLayoutGroup : LayoutGroup
 
     #region Private Methods
 
+    //Vào 2 // Luồng 1
+    //Vào 2 // Luồng 3
     private void CalculateLayoutInputForAxis(int axis)
     {
+        // Debug.Log("CalculateLayoutInputForAxis");
         float preferredSize = 0;
 
         if (axis == 0)
@@ -71,8 +80,11 @@ public class WordListLayoutGroup : LayoutGroup
         SetLayoutInputForAxis(preferredSize, preferredSize, preferredSize, axis);
     }
 
+    // Vào 2 // Luồng 2
+    // Vào 2 // Luồng 4
     private void SetLayoutAlongAxis(int axis)
     {
+        // Debug.Log("SetLayoutAlongAxis");
         float preferredWidth = GetRowPreferredWidth();
         float xStartOffset = GetStartOffset(0, 0);
         float yStartOffset = GetStartOffset(1, 0);
@@ -95,13 +107,13 @@ public class WordListLayoutGroup : LayoutGroup
             }
         }
     }
-
-    /// <summary>
-    /// Gets the preferred size of all rows, this is the total width of all elements divided by the number of rows
-    /// </summary>
-    /// <returns>The row preferred width.</returns>
+    // Vào 3 // Luồng 1
+    // Vào 3 // Luồng 2
+    // Vào 3 // Luồng 3
+    // Vào 3 // Luồng 4
     private float GetRowPreferredWidth()
     {
+        // Debug.Log("GetRowPreferredWidth");
         float totalSize = 0;
 
         for (int i = 0; i < transform.childCount; i++)

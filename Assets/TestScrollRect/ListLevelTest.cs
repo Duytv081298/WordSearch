@@ -28,7 +28,7 @@ public class ListLevelTest : MonoBehaviour
         categoryIcon.sprite = activeCategory.icon;
         // backgroundImage.color = activeCategory.categoryColor;
         var color = activeCategory.categoryColor;
-        Debug.Log(color);
+        // Debug.Log(color);
         ShadowImage.color = color;
         ShadowImage1.color =  new Color(color.r,color.g,color.b,0.25f);
 
@@ -71,7 +71,7 @@ public class ListLevelTest : MonoBehaviour
     }
     public void OnClicked()
     {
-        Debug.Log(this.levelIndex);
+        // Debug.Log(this.levelIndex);
         if (OnLevelItemSelected != null)
         {
             OnLevelItemSelected(levelIndex);

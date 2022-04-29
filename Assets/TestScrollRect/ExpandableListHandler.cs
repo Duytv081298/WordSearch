@@ -56,7 +56,7 @@ public class ExpandableListHandler<T>
         this.dataObjects = dataObjects;
         // Debug.Log("Defaut ListItemSize: " + ListItemSize);
         this.listItemPrefab = listItemPrefab;
-        Debug.Log("Defaut ListItemSize: " + ListItemSize);
+        // Debug.Log("Defaut ListItemSize: " + ListItemSize);
         this.listContainer = listContainer;
         this.listScrollRect = listScrollRect;
         this.expandAnimDuration = expandAnimDuration;
@@ -102,7 +102,7 @@ public class ExpandableListHandler<T>
     public void ExpandListItem(int index, float extraHeight)
     {
         // Debug.Log(" ExpandListItem: ");
-        Debug.Log(" mở rộng list level: " + expandedItemIndex);
+        // Debug.Log(" mở rộng list level: " + expandedItemIndex);
 
         if (IsExpandingOrCollapsing)
         {

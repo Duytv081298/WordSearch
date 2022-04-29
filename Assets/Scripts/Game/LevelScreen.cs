@@ -1,38 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PolyAndCode.UI;
-public class LevelScreen : MonoBehaviour, IRecyclableScrollRectDataSource
+using UnityEngine.UI;
+public class LevelScreen : MonoBehaviour
 {
     // Start is called before the first frame update
     // [SerializeField] private GameObject levelItemPrefab = null;
     // [SerializeField] private RectTransform levlelListContainer = null;
     [SerializeField] private TopBar topBar = null;
     [SerializeField] private string id = "levels";
-    [SerializeField] RecyclableScrollRect _recyclableScrollRect;
-    private List<TextAsset> _contactList = new List<TextAsset>();
-    private void Awake()
-    {
-        _recyclableScrollRect.DataSource = this;
-    }
-    public void Initialize(CategoryInfo activeCategoryInfo)
-    {
-        _contactList = activeCategoryInfo.levelFiles;
-        _recyclableScrollRect.ReloadData();
-        topBar.SetCategoryName(activeCategoryInfo.displayName);
 
-    }
-    public int GetItemCount()
+
+    [Space]
+    [SerializeField] private ScrollRect scrollRect = null;
+    [SerializeField] private RectTransform content = null;
+    [SerializeField] private TestScriptCategory itemCategory = null;
+    [SerializeField] private ListLevelTest itemLevel = null;
+    [SerializeField] private float expandAnimDuration = 0.5f;
+
+
+
+    private ExpandableListHandler<CategoryInfo> expandableListHandler;
+    private ObjectPool levelListItemPool;
+    // private CategoryInfo selectedCategory;
+
+
+    public void Initialize()
     {
-        return _contactList.Count;
+        List<CategoryInfo> categoryInfos = GameManager.Instance.CategoryInfos;
+        // Tạo Pool Container lưu trữ các item level chưa sử dụng đến CreatePoolContainer 
+        // CreatePoolContainer trả về 1 transform
+        // truyền data vào ObjectPool, tạo ra 1 PoolObject bằng Hàm CreateObject
+
+        levelListItemPool = new ObjectPool(itemLevel.gameObject, 1, ObjectPool.CreatePoolContainer(transform));
+        expandableListHandler = new ExpandableListHandler<CategoryInfo>(categoryInfos, itemCategory, content, scrollRect, expandAnimDuration);
+
+        // Add a listener for when a PackListItem is first created to pass it the level list item pool
+        expandableListHandler.OnItemCreated += (ExpandableListItem<CategoryInfo> categoryInfo) =>
+        {
+            (categoryInfo as TestScriptCategory).SetLevelListItemPool(levelListItemPool);
+        };
+
+        expandableListHandler.Setup();
     }
-    public void SetCell(ICell cell, int index)
-    {
-        var item = cell as LevelListItem;
-        item.Initialize(_contactList[index], index);
-    }
+
     public void ReloadData()
     {
-        _recyclableScrollRect.ReloadData();
+        expandableListHandler.Refresh();
     }
+
+
 }
