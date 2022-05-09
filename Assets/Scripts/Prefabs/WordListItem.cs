@@ -9,8 +9,13 @@ public class WordListItem : MonoBehaviour
     [SerializeField] private GameObject foundIndicator = null;
     [SerializeField] private CanvasGroup _wordCVG = null;
 
+    private string word = null;
+
+    public string Word { get => word; set => word = value; }
+
     public void Setup(string word)
     {
+        Word = word;
         wordText.text = word;
         foundIndicator.SetActive(false);
     }
@@ -20,6 +25,7 @@ public class WordListItem : MonoBehaviour
         // foundIndicator.SetActive(true);
         // wordText.color = Color.grey;
         _wordCVG.alpha = 0.5f;
+
     }
     public void SetAlpha(bool isActive)
     {

@@ -139,11 +139,13 @@ public class WordListContainer : MonoBehaviour
             Debug.LogError("[WordList] Word does not exist in the word list: " + word);
         }
     }
-    public Vector3 GetPositionWord(string word)
-    {
-        if (wordListItems.ContainsKey(word))
+    public Vector3 GetPositionWord(string word){
+         if (wordListItems.ContainsKey(word))
         {
-            return wordListItems[word].transform.TransformPoint(Vector3.zero);
+            wordListItems[word].SetWordFound();
+            var position = wordListItems[word].transform.position;
+            // Debug.Log("key: " + word + "  wort: " + wordListItems[word].Word + "  position: " + position);
+            // plus.transform.DOJump(position, 30, 1, 0.5f, true);
         }
         else
         {

@@ -24,7 +24,6 @@ public class SelectedWord : MonoBehaviour
             activeSequence = false;
         }
         // transform.Rotate(0, 0, 0);
-        transform.localScale = Vector3.one;
         selectedWordText.text = word;
         selectedWordContainer.SetActive(true);
         canvasGroup.alpha = 1;
@@ -40,11 +39,8 @@ public class SelectedWord : MonoBehaviour
 
     private void RightChoice()
     {
-        activeSequence = true;
-        selectedWordFalse = DOTween.Sequence();
-        selectedWordFalse.Append(transform.DOScale(new Vector3(1.2f, 1.2f, 1), 0.8f));
-        selectedWordFalse.Insert(0.3f, canvasGroup.DOFade(0, selectedWordFalse.Duration() - 0.3f));
-        selectedWordFalse.OnComplete(() => activeSequence = false);
+        selectedWordText.text = "";
+        selectedWordContainer.SetActive(false);
     }
     private void WrongChoice()
     {
@@ -56,6 +52,5 @@ public class SelectedWord : MonoBehaviour
         selectedWordFalse.Insert(0, canvasGroup.DOFade(0, selectedWordFalse.Duration()));
         selectedWordFalse.OnComplete(() => activeSequence = false);
     }
-
 
 }

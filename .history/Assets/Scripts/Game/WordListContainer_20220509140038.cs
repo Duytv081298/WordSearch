@@ -139,18 +139,6 @@ public class WordListContainer : MonoBehaviour
             Debug.LogError("[WordList] Word does not exist in the word list: " + word);
         }
     }
-    public Vector3 GetPositionWord(string word)
-    {
-        if (wordListItems.ContainsKey(word))
-        {
-            return wordListItems[word].transform.TransformPoint(Vector3.zero);
-        }
-        else
-        {
-            Debug.LogError("[WordList] Word does not exist in the word list: " + word);
-            return Vector3.zero;
-        }
-    }
     public void PlusWord(HashSet<string> foundWords)
     {
         if (UnusedWord.Count > 5) Debug.Log("Có hơn 5 từ chưa được hiển thị");
@@ -248,7 +236,7 @@ public class WordListContainer : MonoBehaviour
     }
     private void CreateRowWordList(int row)
     {
-        // Debug.Log("row: " + row);
+        Debug.Log("row: " + row);
         for (int i = 0; i < row; i++)
         {
             RectTransform rowWordList = CreateContainer("Row Word List", typeof(RectTransform));

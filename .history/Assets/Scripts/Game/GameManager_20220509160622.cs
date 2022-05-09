@@ -426,6 +426,10 @@ public class GameManager : SingletonComponent<GameManager>
 
             // Set it as selected
             OnWordSelected(wordToShow);
+
+            var position = wordListContainer.GetPositionWord(wordToShow);
+            Debug.Log(position);
+
             // Highlight the word
             characterGrid.ShowWordHint(wordToShow);
 
@@ -435,10 +439,6 @@ public class GameManager : SingletonComponent<GameManager>
 
             // SoundManager.Instance.Play("hint-used");
         }
-    }
-
-    public Vector3 GetPositionWord(string word){
-        return wordListContainer.GetPositionWord(word);
     }
     public void HintHighlightLetter()
     {

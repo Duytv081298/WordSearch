@@ -143,7 +143,7 @@ public class WordListContainer : MonoBehaviour
     {
         if (wordListItems.ContainsKey(word))
         {
-            return wordListItems[word].transform.TransformPoint(Vector3.zero);
+            return wordListItems[word].transform.TransformPoint();
         }
         else
         {

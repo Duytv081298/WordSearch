@@ -618,7 +618,7 @@ public class CharacterGrid : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
 
 
-    public void ShowWordHint(string word)
+    public void ShowWordHint(string word, Vector3 position)
     {
         if (currentBoard == null)
         {

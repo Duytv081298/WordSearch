@@ -426,19 +426,15 @@ public class GameManager : SingletonComponent<GameManager>
 
             // Set it as selected
             OnWordSelected(wordToShow);
+
             // Highlight the word
             characterGrid.ShowWordHint(wordToShow);
-
 
             // Deduct the cost
             Coins -= coinCostWordHint;
 
             // SoundManager.Instance.Play("hint-used");
         }
-    }
-
-    public Vector3 GetPositionWord(string word){
-        return wordListContainer.GetPositionWord(word);
     }
     public void HintHighlightLetter()
     {

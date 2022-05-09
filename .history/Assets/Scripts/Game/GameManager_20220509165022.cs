@@ -426,8 +426,11 @@ public class GameManager : SingletonComponent<GameManager>
 
             // Set it as selected
             OnWordSelected(wordToShow);
+
+            var position = wordListContainer.GetPositionWord(wordToShow);
+
             // Highlight the word
-            characterGrid.ShowWordHint(wordToShow);
+            characterGrid.ShowWordHint(wordToShow, position);
 
 
             // Deduct the cost

@@ -146,7 +146,7 @@ public class CharacterGrid : MonoBehaviour, IPointerDownHandler, IDragHandler, I
             // kiểm tra foundWord không phải null hoặc chuỗi rỗng
             if (!string.IsNullOrEmpty(foundWord))
             {
-                ShowWord(wordStartPosition, wordEndPosition, foundWord, true, GameManager.Instance.GetPositionWord(foundWord));
+                ShowWord(wordStartPosition, wordEndPosition, foundWord, true, Vector3.zero);
                 selectedWord.Clear(true);
                 // SoundManager.Instance.Play("word-found");
             }
@@ -547,9 +547,7 @@ public class CharacterGrid : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
         Color toColor = new Color(floatingText.color.r, floatingText.color.g, floatingText.color.b, 0f);
         Debug.Log("toPosition: " + toPosition);
-        floatingText.transform.DOMove(toPosition, 1f);
-        floatingText.transform.DOScale(new Vector3(0.3f, 0.3f, 1), 1f)
-        .OnComplete(()=>Destroy(floatingText.gameObject));
+        floatingText.transform.DOMove(toPosition, 3f);
 
     }
     public Image HighlightWord(Position start, Position end, bool useSelectedColour)
@@ -618,7 +616,7 @@ public class CharacterGrid : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
 
 
-    public void ShowWordHint(string word)
+    public void ShowWordHint(string word, Vector3 position)
     {
         if (currentBoard == null)
         {
@@ -634,7 +632,7 @@ public class CharacterGrid : MonoBehaviour, IPointerDownHandler, IDragHandler, I
                 Position startPosition = wordPlacement.startingPosition;
                 Position endPosition = new Position(startPosition.row + wordPlacement.verticalDirection * (word.Length - 1), startPosition.col + wordPlacement.horizontalDirection * (word.Length - 1));
 
-                ShowWord(startPosition, endPosition, word, false, GameManager.Instance.GetPositionWord(word));
+                ShowWord(startPosition, endPosition, word, false, position);
 
                 break;
             }

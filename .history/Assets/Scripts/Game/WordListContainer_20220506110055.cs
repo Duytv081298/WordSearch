@@ -41,7 +41,7 @@ public class WordListContainer : MonoBehaviour
     {
 
         UnusedWord = new HashSet<string>();
-        // Debug.Log("Số lượng chữ: " + board.words.Count);
+        Debug.Log("Số lượng chữ: " + board.words.Count);
         Clear();
         // Debug.Log("WordListContainer Setup");
         board.ShuffleListString();
@@ -110,10 +110,10 @@ public class WordListContainer : MonoBehaviour
             }
         }
 
-        // Debug.Log("Tổng số chữ: " + wordListItems.Count);
-        // Debug.Log("Số lượng chữ chưa sử dụng: " + UnusedWord.Count);
+        Debug.Log("Tổng số chữ: " + wordListItems.Count);
+        Debug.Log("Số lượng chữ chưa sử dụng: " + UnusedWord.Count);
 
-        // Debug.Log("row: " + rowWordLists.Count);
+        Debug.Log("row: " + rowWordLists.Count);
         var VLG = wordListContainer.GetComponent<VerticalLayoutGroup>();
         if (rowWordLists.Count == 3)
         {
@@ -131,7 +131,7 @@ public class WordListContainer : MonoBehaviour
         {
             wordListItems[word].SetWordFound();
             var position = wordListItems[word].transform.position;
-            // Debug.Log("key: " + word + "  wort: " + wordListItems[word].Word + "  position: " + position);
+            Debug.Log("key: " + word + "  wort: " + wordListItems[word].Word + "  position: " + position);
             // plus.transform.DOJump(position, 30, 1, 0.5f, true);
         }
         else
@@ -139,25 +139,13 @@ public class WordListContainer : MonoBehaviour
             Debug.LogError("[WordList] Word does not exist in the word list: " + word);
         }
     }
-    public Vector3 GetPositionWord(string word)
-    {
-        if (wordListItems.ContainsKey(word))
-        {
-            return wordListItems[word].transform.TransformPoint(Vector3.zero);
-        }
-        else
-        {
-            Debug.LogError("[WordList] Word does not exist in the word list: " + word);
-            return Vector3.zero;
-        }
-    }
     public void PlusWord(HashSet<string> foundWords)
     {
         if (UnusedWord.Count > 5) Debug.Log("Có hơn 5 từ chưa được hiển thị");
         if (foundWords.Count >= UnusedWord.Count || foundWords.Count >= 3 && UnusedWord.Count > 5)
         {
-            // Debug.Log("số từ đã tìm thấy: " + foundWords.Count);
-            // Debug.Log("Kích hoạt sao");
+            Debug.Log("số từ đã tìm thấy: " + foundWords.Count);
+            Debug.Log("Kích hoạt sao");
         }
     }
 
@@ -248,7 +236,7 @@ public class WordListContainer : MonoBehaviour
     }
     private void CreateRowWordList(int row)
     {
-        // Debug.Log("row: " + row);
+        Debug.Log("row: " + row);
         for (int i = 0; i < row; i++)
         {
             RectTransform rowWordList = CreateContainer("Row Word List", typeof(RectTransform));

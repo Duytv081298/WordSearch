@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
-using DG.Tweening;
 
 public class CharacterGrid : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
@@ -15,7 +14,6 @@ public class CharacterGrid : MonoBehaviour, IPointerDownHandler, IDragHandler, I
         BelowLetters
     }
 
-    [SerializeField] private WordListContainer wordListContainer = null;
     [SerializeField] private float maxCellSize = 200;
     [SerializeField] private SelectedWord selectedWord = null;
 
@@ -146,7 +144,8 @@ public class CharacterGrid : MonoBehaviour, IPointerDownHandler, IDragHandler, I
             // kiểm tra foundWord không phải null hoặc chuỗi rỗng
             if (!string.IsNullOrEmpty(foundWord))
             {
-                ShowWord(wordStartPosition, wordEndPosition, foundWord, true, GameManager.Instance.GetPositionWord(foundWord));
+                Debug.Log("aaaaaaa");
+                ShowWord(wordStartPosition, wordEndPosition, foundWord, true);
                 selectedWord.Clear(true);
                 // SoundManager.Instance.Play("word-found");
             }
@@ -531,7 +530,7 @@ public class CharacterGrid : MonoBehaviour, IPointerDownHandler, IDragHandler, I
         return container;
     }
 
-    private void ShowWord(Position wordStartPosition, Position wordEndPosition, string word, bool useSelectedColor, Vector3 toPosition)
+    private void ShowWord(Position wordStartPosition, Position wordEndPosition, string word, bool useSelectedColor)
     {
         CharacterGridItem startCharacter = characterItems[wordStartPosition.row][wordStartPosition.col];
         CharacterGridItem endCharacter = characterItems[wordEndPosition.row][wordEndPosition.col];
@@ -546,10 +545,8 @@ public class CharacterGrid : MonoBehaviour, IPointerDownHandler, IDragHandler, I
         Text floatingText = CreateFloatingText(word, highlight.color, center);
 
         Color toColor = new Color(floatingText.color.r, floatingText.color.g, floatingText.color.b, 0f);
-        Debug.Log("toPosition: " + toPosition);
-        floatingText.transform.DOMove(toPosition, 1f);
-        floatingText.transform.DOScale(new Vector3(0.3f, 0.3f, 1), 1f)
-        .OnComplete(()=>Destroy(floatingText.gameObject));
+
+
 
     }
     public Image HighlightWord(Position start, Position end, bool useSelectedColour)
@@ -579,6 +576,7 @@ public class CharacterGrid : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
     private Text CreateFloatingText(string text, Color color, Vector2 position)
     {
+        Debug.Log(222222);
         GameObject floatingTextObject = new GameObject("found_word_floating_text", typeof(Shadow));
         RectTransform floatingTextRectT = floatingTextObject.AddComponent<RectTransform>();
         Text floatingText = floatingTextObject.AddComponent<Text>();
@@ -620,6 +618,7 @@ public class CharacterGrid : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
     public void ShowWordHint(string word)
     {
+        Debug.Log(Utilities.ConvertToJsonString(currentBoard.ToJson()));
         if (currentBoard == null)
         {
             return;
@@ -631,10 +630,12 @@ public class CharacterGrid : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
             if (word == wordPlacement.word)
             {
+                Debug.Log("wordPlacement.startingPosition: " + wordPlacement.startingPosition);
                 Position startPosition = wordPlacement.startingPosition;
                 Position endPosition = new Position(startPosition.row + wordPlacement.verticalDirection * (word.Length - 1), startPosition.col + wordPlacement.horizontalDirection * (word.Length - 1));
 
-                ShowWord(startPosition, endPosition, word, false, GameManager.Instance.GetPositionWord(word));
+                Debug.Log("bbbbbbb");
+                ShowWord(startPosition, endPosition, word, false);
 
                 break;
             }
